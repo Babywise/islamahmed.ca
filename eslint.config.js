@@ -78,6 +78,7 @@ const coreConfig = tseslint.config({
     "no-void": ["off"], // (off) Allows the `void` operator // "error" disallows the `void` operator
     "capitalized-comments": ["off"], // (off) Allows comments in any case // "warn" requires comments to be capitalized
     "no-fallthrough": ["off"], // (off) Allows `switch` cases to fall through // "error" disallows `switch` cases to fall through
+    "no-magic-numbers": ["off"], // (off) Allows "magic" numbers without naming them // "warn" disallows unnamed "magic" numbers
 
     /* Warning Rules */
 
@@ -85,7 +86,6 @@ const coreConfig = tseslint.config({
     "consistent-return": ["warn"], // (off) Allows mixed return types // "warn" Enforces consistent return values in functions
     "no-await-in-loop": ["warn"], // (off) Allows `await` statements inside loops // "warn" disallows `await` in loops
     "no-else-return": ["warn"], // (off) Allows `else` blocks after `return` statements // "warn" disallows `else` after `return`
-    "no-magic-numbers": ["warn"], // (off) Allows "magic" numbers without naming them // "warn" disallows unnamed "magic" numbers
     "no-use-before-define": ["warn"], // (off) Allows usage before definition // "warn" Enforces variables to be defined before use
     "n/no-unsupported-features/node-builtins": ["warn"], // (off) Allows any Node built-in // "warn" Disallows unsupported Node.js built-ins
 
