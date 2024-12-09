@@ -1,2 +1,2 @@
 # islamahmed.ca
-Portfolio website built in React, Typescript and Docker
+Portfolio website built in Node, React, Typescript and Docker
