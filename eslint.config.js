@@ -88,11 +88,11 @@ const coreConfig = tseslint.config({
     "no-else-return": ["warn"], // (off) Allows `else` blocks after `return` statements // "warn" disallows `else` after `return`
     "no-use-before-define": ["warn"], // (off) Allows usage before definition // "warn" Enforces variables to be defined before use
     "n/no-unsupported-features/node-builtins": ["warn"], // (off) Allows any Node built-in // "warn" Disallows unsupported Node.js built-ins
+    "no-console": ["warn"], // (off) Allows console usage // "warn" Enforces removal of `console` statements
 
     /* Error Rules */
 
-    "func-style": ["error", "declaration", { allowArrowFunctions: true }], // (off) Allows function expressions // "error" Enforces function declarations over expressions, allows arrow functions
-    "no-console": ["error"] // (off) Allows console usage // "warn" Enforces removal of `console` statements
+    "func-style": ["error", "declaration", { allowArrowFunctions: true }] // (off) Allows function expressions // "error" Enforces function declarations over expressions, allows arrow functions
   }
 });
 
@@ -141,10 +141,11 @@ const reactConfig = tseslint.config({
     "react/prop-types": ["off"], // (off) Disables prop type validation // "error" Requires prop types
     "react/prefer-read-only-props": ["off"], // (off) Allows mutable props // "warn" Enforces read-only props where possible
     "react/require-default-props": ["off"], // (off) Allows optional props without defaults // "error" Requires default values for optional props
+    "react/forbid-component-props": ["off"], // (off) Allows any props on components // "error" Forbids certain props like `style`
 
     /* Warning Rules */
 
-    "react/no-unknown-property": ["warn"], // (off) Allows unknown properties in JSX // "error" Disallows unknown properties
+    "react/no-unknown-property": ["off"], // (off) Allows unknown properties in JSX // "error" Disallows unknown properties
     "react/no-object-type-as-default-prop": ["warn"], // (off) Allows object types as default props // "error" Disallows objects as defaults
     "react/hook-use-state": ["warn"], // (off) Allows any usage of `useState` // "warn" Enforces correct `useState` usage
     "react/jsx-sort-props": ["warn"], // (off) Allows any prop order in JSX // "warn" Enforces sorted props in JSX elements
@@ -153,11 +154,9 @@ const reactConfig = tseslint.config({
       "warn",
       { allowConstantExport: true }
     ], // (off) Allows exporting non-components // "warn" Only allows component exports
-    "react/button-has-type": ["warn"], // (off) Allows buttons without `type` // "warn" Requires `type` on `button` elements
+    "react/button-has-type": ["warn"] // (off) Allows buttons without `type` // "warn" Requires `type` on `button` elements
 
     /* Error Rules */
-
-    "react/forbid-component-props": ["error"] // (off) Allows any props on components // "error" Forbids certain props like `style`
   }
 });
 
