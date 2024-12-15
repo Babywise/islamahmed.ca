@@ -2,7 +2,7 @@ import type { OrbitControlsProps } from "@react-three/drei";
 import { OrbitControls } from "@react-three/drei";
 import type { ThreeEvent } from "@react-three/fiber";
 import { useThree } from "@react-three/fiber";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import type { Euler } from "three";
 import {
   AmbientLight,
@@ -504,17 +504,29 @@ const ResponsiveOrbitControls = ({
   ...props
 }: ResponsiveOrbitControlsProps) => {
   const { viewport } = useThree();
+  const [calculatedDistance, setCalculatedDistance] = useState(baseDistance);
 
-  // Calculate viewport-based distance
-  const normalizedWidth = viewport.width / 10;
-  const scale = (1 / (normalizedWidth + 0.1)) ** scaleFactor;
-  const distance = Math.min(
-    _maxDistance,
-    Math.max(_minDistance, baseDistance * scale)
-  );
+  useLayoutEffect(() => {
+    if (viewport && viewport.width > 0) {
+      // Calculate viewport-based distance on first load
+      const normalizedWidth = viewport.width / 10;
+      const scale = (1 / (normalizedWidth + 0.1)) ** scaleFactor;
+      const newDistance = Math.min(
+        _maxDistance,
+        Math.max(_minDistance, baseDistance * scale)
+      );
+
+      // Update the state with the calculated distance
+      setCalculatedDistance(newDistance);
+    }
+  }, [viewport.width, baseDistance, _maxDistance, _minDistance, scaleFactor]);
 
   return (
-    <OrbitControls {...props} maxDistance={distance} minDistance={distance} />
+    <OrbitControls
+      {...props}
+      maxDistance={calculatedDistance}
+      minDistance={calculatedDistance}
+    />
   );
 };
 
