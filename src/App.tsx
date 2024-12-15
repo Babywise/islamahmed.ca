@@ -10,10 +10,12 @@ import Home from "./pages/home/Home";
  */
 function App() {
   return (
-    <Routes>
-      <Route element={<Home />} path="/" />
-      <Route element={<NotFound />} path="*" />
-    </Routes>
+    <main>
+      <Routes>
+        <Route element={<Home />} path="/" />
+        <Route element={<NotFound />} path="*" />
+      </Routes>
+    </main>
   );
 }
 
