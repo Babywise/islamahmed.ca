@@ -1,4 +1,9 @@
-import type { Euler, Mesh, MeshStandardMaterial } from "three";
+import type { OrbitControlsProps } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
+import type { ThreeEvent } from "@react-three/fiber";
+import { useThree } from "@react-three/fiber";
+import { useEffect } from "react";
+import type { Euler } from "three";
 import {
   AmbientLight,
   Box3,
@@ -6,6 +11,8 @@ import {
   DirectionalLight,
   Group,
   LoadingManager,
+  Mesh,
+  MeshStandardMaterial,
   OrthographicCamera,
   PerspectiveCamera,
   Scene,
@@ -39,7 +46,7 @@ const createScene = (backgroundColor?: Color | string): Scene => {
 
 /**
  * Creates a new Perspective or Orthographic camera based on parameters.
- * ⚠️ Not compatible with React Three Fiber. Use Fiber’s `&lt;PerspectiveCamera />` or `&lt;OrthographicCamera />`.
+ * ⚠️ Not compatible with React Three Fiber. Use Fiber’s `<PerspectiveCamera />` or `<OrthographicCamera >`.
  * @param {number} [fov] Field of view for the perspective camera.
  * @param {number} [aspect] Aspect ratio of the camera.
  * @param {number} [near] Near clipping plane.
@@ -61,7 +68,7 @@ const createCamera = (
 
 /**
  * Sets the position of a camera (works for both Perspective and Orthographic cameras).
- * ⚠️ Not compatible with React Three Fiber. Use Fiber’s `&lt;Camera />` position props instead.
+ * ⚠️ Not compatible with React Three Fiber. Use Fiber’s `<Camera />` position props instead.
  * @param {PerspectiveCamera | OrthographicCamera} camera The camera to position.
  * @param {Vector3} position The new position for the camera.
  */
@@ -74,7 +81,7 @@ const setCameraPosition = (
 
 /**
  * Sets the rotation of a camera (works for both camera types).
- * ⚠️ Not compatible with React Three Fiber. Use Fiber’s `&lt;Camera />` rotation props instead.
+ * ⚠️ Not compatible with React Three Fiber. Use Fiber’s `<Camera />` rotation props instead.
  * @param {PerspectiveCamera | OrthographicCamera} camera The camera to rotate.
  * @param {Euler} rotation The new rotation for the camera.
  */
@@ -87,7 +94,7 @@ const setCameraRotation = (
 
 /**
  * Sets the field of view (FOV) for a PerspectiveCamera, ignored for OrthographicCamera.
- * ⚠️ Not compatible with React Three Fiber. Set `fov` directly on Fiber’s `&lt;PerspectiveCamera />` props.
+ * ⚠️ Not compatible with React Three Fiber. Set `fov` directly on Fiber’s `<PerspectiveCamera />` props.
  * @param {PerspectiveCamera | OrthographicCamera} camera The camera to set the FOV for.
  * @param {number} fov The new FOV.
  */
@@ -103,7 +110,7 @@ const setCameraFov = (
 
 /**
  * Sets the camera to look at a specified target position (works for both camera types).
- * ⚠️ Not compatible with React Three Fiber. Use Fiber’s `&lt;Camera />` lookAt function instead.
+ * ⚠️ Not compatible with React Three Fiber. Use Fiber’s `<Camera />` lookAt function instead.
  * @param {PerspectiveCamera | OrthographicCamera} camera The camera to point.
  * @param {Vector3} target The target position to look at.
  */
@@ -187,18 +194,46 @@ const loadModel = ({
 
 /**
  * Sets the color of a model's material and updates textures if they exist.
- * @param {Group} model The model to color.
+ * @param {Group | Mesh} object The object to color.
  * @param {Color | string} color The color to apply.
  */
-const setColor = (model: Group, color: Color | string) => {
-  model.traverse(child => {
-    if ((child as Mesh).isMesh) {
-      const material = (child as Mesh).material as MeshStandardMaterial;
-      material.color = new Color(color);
-      if (material.map) material.map.needsUpdate = true;
-      if (material.emissiveMap) material.emissiveMap.needsUpdate = true;
+const setColor = (object: Group | Mesh, color: Color | string) => {
+  /**
+   * Sets the color of a mesh's material and updates textures if they exist.
+   * @param mesh The mesh to color and update.
+   */
+  const setMeshColor = (mesh: Mesh) => {
+    const { material } = mesh;
+    if (Array.isArray(material)) {
+      // For meshes with multiple materials
+      material.forEach(mat => {
+        if ((mat as MeshStandardMaterial).isMeshStandardMaterial) {
+          (mat as MeshStandardMaterial).color.set(color);
+          (mat as MeshStandardMaterial).needsUpdate = true;
+        }
+      });
+    } else if ((material as MeshStandardMaterial).isMeshStandardMaterial) {
+      // Single material
+      (material as MeshStandardMaterial).color.set(color);
+      (material as MeshStandardMaterial).needsUpdate = true;
+    } else {
+      // Replace incompatible material
+      mesh.material = new MeshStandardMaterial({
+        color: new Color(color)
+      });
+      mesh.material.needsUpdate = true;
     }
-  });
+  };
+
+  if (object instanceof Group) {
+    object.traverse(child => {
+      if ((child as Mesh).isMesh) {
+        setMeshColor(child as Mesh);
+      }
+    });
+  } else if (object instanceof Mesh) {
+    setMeshColor(object);
+  }
 };
 
 /**
@@ -312,7 +347,7 @@ const rotateAround = (
 
 /**
  * Adds ambient lighting to a scene with a specified color and intensity.
- * ⚠️ Not compatible with React Three Fiber. Use Fiber’s `&lt;ambientLight />` instead.
+ * ⚠️ Not compatible with React Three Fiber. Use Fiber’s `<ambientLight />` instead.
  * @param {Scene} scene The scene to add the light to.
  * @param {Color | string} color The color of the ambient light, which can be a Color object or a string representing a color.
  * @param {number} intensity The intensity of the ambient light, typically between 0 and 1.
@@ -330,7 +365,7 @@ const addAmbientLight = (
 
 /**
  * Adds directional lighting to a scene with a specified color, intensity, and position.
- * ⚠️ Not compatible with React Three Fiber. Use Fiber’s `&lt;directionalLight />` instead.
+ * ⚠️ Not compatible with React Three Fiber. Use Fiber’s `<directionalLight />` instead.
  * @param {Scene} scene The scene to add the light to.
  * @param {Color | string} color The color value for the directional light, which can be a Color object or a string representing a color.
  * @param {number} intensity The intensity of the directional light, typically between 0 and 1.
@@ -351,16 +386,138 @@ const addDirectionalLight = (
 
 /**
  * Calculates the bounding box of a model and returns its size and center.
- * @param {Group} model The model to calculate dimensions for.
+ * @param {Group | Mesh} object The object to calculate dimensions for.
  * @returns {object} An object with size and center properties.
  */
-const calculateDimensions = (model: Group) => {
-  const box = new Box3().setFromObject(model);
+const calculateDimensions = (object: Group | Mesh) => {
+  const box = new Box3();
+
+  box.setFromObject(object);
+
   return {
     center: box.getCenter(new Vector3()),
     size: box.getSize(new Vector3())
   };
 };
+
+interface ModelInteractionProps {
+  models: Array<Group | Mesh | null>;
+  onHoverChange?: (model: Group | Mesh | null) => void;
+}
+
+/**
+ * Component for handling model interaction events, such as pointer move and out.
+ * @param ModelInteractionProps The component props object.
+ * @param ModelInteractionProps.models An array of loaded models.
+ * @param ModelInteractionProps.onHoverChange An optional callback to update the hovered model.
+ */
+const ModelInteractionComponent = ({
+  models,
+  onHoverChange
+}: ModelInteractionProps) => {
+  /**
+   * Handles pointer move events and updates the hovered model.
+   * @param {ThreeEvent<PointerEvent>} event The pointer move event from React Three Fiber.
+   */
+  const handlePointerMove = (event: ThreeEvent<PointerEvent>) => {
+    if (event.intersections.length > 0) {
+      const [firstIntersect] = event.intersections;
+      if (
+        firstIntersect.object instanceof Mesh ||
+        firstIntersect.object instanceof Group
+      ) {
+        onHoverChange?.(firstIntersect.object);
+      }
+    } else {
+      onHoverChange?.(null);
+    }
+  };
+
+  /**
+   * Clears the hovered model when the pointer leaves the scene.
+   */
+  const handlePointerOut = () => {
+    onHoverChange?.(null);
+  };
+
+  return (
+    <group>
+      {models.map(
+        model =>
+          model && (
+            <primitive
+              key={model.uuid}
+              object={model}
+              onPointerMove={handlePointerMove}
+              onPointerOut={handlePointerOut}
+            />
+          )
+      )}
+    </group>
+  );
+};
+
+interface ModelProps {
+  model: Group | null;
+}
+
+/**
+ * Component to add a model to the scene.
+ * @param ModelProps The component props object.
+ * @param ModelProps.model The model to add to the scene.
+ */
+const Model = ({ model }: ModelProps) => {
+  const { scene } = useThree();
+
+  useEffect(() => {
+    if (model) {
+      scene.add(model);
+      return () => {
+        scene.remove(model);
+      };
+    }
+    return undefined;
+  }, [model, scene]);
+
+  return null;
+};
+
+interface ResponsiveOrbitControlsProps extends OrbitControlsProps {
+  baseDistance?: number; // Base distance for camera positioning
+  scaleFactor?: number; // Scale factor for viewport-based distance calculation
+}
+
+/**
+ * Extended OrbitControls with viewport-based camera distance scaling.
+ * Automatically adjusts camera distance based on viewport size.
+ * @param ResponsiveOrbitControlsProps The component props object for OrbitControls.
+ * @param ResponsiveOrbitControlsProps.baseDistance The base distance for camera positioning.
+ * @param ResponsiveOrbitControlsProps.scaleFactor The scale factor for viewport-based distance calculation.
+ * @param ResponsiveOrbitControlsProps.minDistance The minimum distance for the camera.
+ * @param ResponsiveOrbitControlsProps.maxDistance The maximum distance for the camera.
+ */
+const ResponsiveOrbitControls = ({
+  baseDistance = 10,
+  maxDistance: _maxDistance = 0,
+  minDistance: _minDistance = 10,
+  scaleFactor = 1,
+  ...props
+}: ResponsiveOrbitControlsProps) => {
+  const { viewport } = useThree();
+
+  // Calculate viewport-based distance
+  const normalizedWidth = viewport.width / 10;
+  const scale = (1 / (normalizedWidth + 0.1)) ** scaleFactor;
+  const distance = Math.min(
+    _maxDistance,
+    Math.max(_minDistance, baseDistance * scale)
+  );
+
+  return (
+    <OrbitControls {...props} maxDistance={distance} minDistance={distance} />
+  );
+};
+
 const ThreeService = {
   addAmbientLight,
   addDirectionalLight,
@@ -368,8 +525,10 @@ const ThreeService = {
   createCamera,
   createScene,
   loadModel,
+  Model,
+  ModelInteractionComponent,
+  ResponsiveOrbitControls,
   rotateAround,
-  RotationAxis,
   setBackgroundColor,
   setCameraFov,
   setCameraPosition,
