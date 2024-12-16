@@ -8,14 +8,14 @@ function Header() {
         <img
           alt="Logo"
           className="aspect-square size-full max-w-[calc(56px-1rem)] object-contain text-black"
-          src={`${import.meta.env.BASE_URL}favicon.ico`}
+          src={`${import.meta.env.BASE_URL}/favicon.ico`}
         />
         <ul className="flex items-center justify-center gap-4">
           <li>
-            <a href={import.meta.env.BASE_URL}>Home</a>
+            <a href={`${import.meta.env.BASE_URL}/`}>Home</a>
           </li>
           <li>
-            <a href={`${import.meta.env.BASE_URL}projects`}>Projects</a>
+            <a href={`${import.meta.env.BASE_URL}/projects`}>Projects</a>
           </li>
         </ul>
       </nav>
