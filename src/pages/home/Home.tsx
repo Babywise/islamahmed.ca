@@ -11,13 +11,17 @@ function Home() {
     <>
       <div className="flex justify-center">
         <a href="https://vite.dev" rel="noreferrer" target="_blank">
-          <img alt="Vite logo" className="logo" src="/images/vite.svg" />
+          <img
+            alt="Vite logo"
+            className="logo"
+            src={`${import.meta.env.BASE_URL}/images/vite.svg`}
+          />
         </a>
         <a href="https://react.dev" rel="noreferrer" target="_blank">
           <img
             alt="React logo"
             className="logo react logo-spin"
-            src="/images/react.svg"
+            src={`${import.meta.env.BASE_URL}/images/react.svg`}
           />
         </a>
       </div>

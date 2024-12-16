@@ -12,7 +12,7 @@ function App() {
   return (
     <main>
       <Routes>
-        <Route element={<Home />} path="/" />
+        <Route element={<Home />} path={`${import.meta.env.BASE_URL}/`} />
         <Route element={<NotFound />} path="*" />
       </Routes>
     </main>
