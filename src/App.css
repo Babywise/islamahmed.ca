@@ -3,7 +3,13 @@
 @tailwind utilities;
 
 main {
-  @apply flex size-full min-h-screen flex-col items-center justify-center;
+  @apply flex size-full min-h-[calc(100vh-56px)] flex-col items-center justify-center;
+}
+
+main,
+header,
+footer {
+  @apply px-10;
 }
 
 @layer components {

@@ -2,6 +2,7 @@ import "./App.css";
 
 import { Route, Routes } from "react-router-dom";
 
+import Header from "./components/header/Header";
 import NotFound from "./pages/error/NotFound";
 import Home from "./pages/home/Home";
 
@@ -10,12 +11,15 @@ import Home from "./pages/home/Home";
  */
 function App() {
   return (
-    <main>
-      <Routes>
-        <Route element={<Home />} path={`${import.meta.env.BASE_URL}/`} />
-        <Route element={<NotFound />} path="*" />
-      </Routes>
-    </main>
+    <>
+      <Header />
+      <main>
+        <Routes>
+          <Route element={<Home />} path={`${import.meta.env.BASE_URL}/`} />
+          <Route element={<NotFound />} path="*" />
+        </Routes>
+      </main>
+    </>
   );
 }
 
