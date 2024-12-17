@@ -1,8 +1,6 @@
-import type { OrbitControlsProps } from "@react-three/drei";
-import { OrbitControls } from "@react-three/drei";
 import type { ThreeEvent } from "@react-three/fiber";
 import { useThree } from "@react-three/fiber";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect } from "react";
 import type { Euler } from "three";
 import {
   AmbientLight,
@@ -482,54 +480,6 @@ const Model = ({ model }: ModelProps) => {
   return null;
 };
 
-interface ResponsiveOrbitControlsProps extends OrbitControlsProps {
-  baseDistance?: number; // Base distance for camera positioning
-  scaleFactor?: number; // Scale factor for viewport-based distance calculation
-}
-
-/**
- * Extended OrbitControls with viewport-based camera distance scaling.
- * Automatically adjusts camera distance based on viewport size.
- * @param ResponsiveOrbitControlsProps The component props object for OrbitControls.
- * @param ResponsiveOrbitControlsProps.baseDistance The base distance for camera positioning.
- * @param ResponsiveOrbitControlsProps.scaleFactor The scale factor for viewport-based distance calculation.
- * @param ResponsiveOrbitControlsProps.minDistance The minimum distance for the camera.
- * @param ResponsiveOrbitControlsProps.maxDistance The maximum distance for the camera.
- */
-const ResponsiveOrbitControls = ({
-  baseDistance = 10,
-  maxDistance: _maxDistance = 0,
-  minDistance: _minDistance = 10,
-  scaleFactor = 1,
-  ...props
-}: ResponsiveOrbitControlsProps) => {
-  const { viewport } = useThree();
-  const [calculatedDistance, setCalculatedDistance] = useState(baseDistance);
-
-  useLayoutEffect(() => {
-    if (viewport && viewport.width > 0) {
-      // Calculate viewport-based distance on first load
-      const normalizedWidth = viewport.width / 10;
-      const scale = (1 / (normalizedWidth + 0.1)) ** scaleFactor;
-      const newDistance = Math.min(
-        _maxDistance,
-        Math.max(_minDistance, baseDistance * scale)
-      );
-
-      // Update the state with the calculated distance
-      setCalculatedDistance(newDistance);
-    }
-  }, [viewport.width, baseDistance, _maxDistance, _minDistance, scaleFactor]);
-
-  return (
-    <OrbitControls
-      {...props}
-      maxDistance={calculatedDistance}
-      minDistance={calculatedDistance}
-    />
-  );
-};
-
 const ThreeService = {
   addAmbientLight,
   addDirectionalLight,
@@ -539,7 +489,6 @@ const ThreeService = {
   loadModel,
   Model,
   ModelInteractionComponent,
-  ResponsiveOrbitControls,
   rotateAround,
   setBackgroundColor,
   setCameraFov,

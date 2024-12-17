@@ -7,6 +7,7 @@
 }
 
 :root {
-  @apply relative bg-black/95 font-roboto font-light leading-normal text-white/85;
+  @apply relative bg-black/95 text-white/85;
   @apply subpixel-antialiased [font-synthesis:none] [text-rendering:optimizeLegibility];
+  @apply font-roboto text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl;
 }

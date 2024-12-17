@@ -1,4 +1,4 @@
-import { PerspectiveCamera } from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useState } from "react";
 import type { Group, Mesh } from "three";
@@ -103,23 +103,25 @@ function NotFound() {
 
   return (
     <>
-      <Canvas className="!h-40" gl={{ antialias: true }} id="canvas">
+      <Canvas
+        className="aspect-video max-h-52"
+        gl={{ antialias: true }}
+        id="canvas">
         <Suspense fallback={null}>
           <ambientLight intensity={0.5} />
           <directionalLight position={[0, 0, 1]} />
           <directionalLight position={[0, 0, -1]} />
           <PerspectiveCamera makeDefault position={[0, 0, 0]} />
-          <ThreeService.ResponsiveOrbitControls
-            baseDistance={10}
+          <OrbitControls
             dampingFactor={0.01}
             enablePan={false}
-            maxDistance={10}
+            enableZoom={false}
+            maxDistance={5}
             maxPolarAngle={90 * (Math.PI / 180)}
             minDistance={5}
             minPolarAngle={90 * (Math.PI / 180)}
             mouseButtons={{}}
             rotateSpeed={0.3}
-            scaleFactor={1}
             target={new Vector3(0, -0.5, 0)}
             touches={{}}
           />
