@@ -121,6 +121,7 @@ function NotFound() {
             rotateSpeed={0.3}
             scaleFactor={1}
             target={new Vector3(0, -0.5, 0)}
+            touches={{}}
           />
           <ThreeService.Model model={firstFourModel} />
           <ThreeService.Model model={zeroModel} />
