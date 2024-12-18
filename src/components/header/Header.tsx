@@ -14,11 +14,16 @@ function Header() {
       <nav
         aria-label="Navbar"
         className="flex size-full items-center justify-between">
-        <img
-          alt="Logo"
+        <a
+          aria-label="Home"
           className="aspect-square h-full object-contain p-[5px]"
-          src={`${import.meta.env.BASE_URL}/favicon.ico`}
-        />
+          href={`${import.meta.env.BASE_URL}/`}>
+          <img
+            alt="Logo"
+            draggable="false"
+            src={`${import.meta.env.BASE_URL}/favicon.ico`}
+          />
+        </a>
 
         {/* Hamburger button for mobile */}
         <button
