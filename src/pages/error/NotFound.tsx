@@ -6,8 +6,8 @@ import { Color, Vector3 } from "three";
 
 import ThreeService from "../../services/three/ThreeService";
 
-const FOUR_MODEL_PATH = `${import.meta.env.BASE_URL}/models/Four.fbx`;
-const ZERO_MODEL_PATH = `${import.meta.env.BASE_URL}/models/Zero.fbx`;
+const FOUR_MODEL_PATH = `/models/Four.fbx`;
+const ZERO_MODEL_PATH = `/models/Zero.fbx`;
 
 /**
  * 404 page component.
