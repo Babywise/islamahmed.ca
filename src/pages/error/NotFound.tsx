@@ -104,7 +104,7 @@ function NotFound() {
   return (
     <>
       <Canvas
-        className="aspect-video max-h-52 py-4"
+        className="aspect-video max-h-52 max-w-[50%]"
         gl={{ antialias: true }}
         id="canvas">
         <Suspense fallback={null}>
