@@ -1,46 +1,24 @@
-import { useState } from "react";
-
 /**
  * Home page component.
  */
 function Home() {
-  const INITIAL_COUNT = 0;
-  const [count, setCount] = useState(INITIAL_COUNT);
-
   return (
-    <>
-      <div className="flex justify-center">
-        <a href="https://vite.dev" rel="noreferrer" target="_blank">
-          <img
-            alt="Vite logo"
-            className="logo"
-            src={`${import.meta.env.BASE_URL}/images/vite.svg`}
-          />
-        </a>
-        <a href="https://react.dev" rel="noreferrer" target="_blank">
-          <img
-            alt="React logo"
-            className="logo react logo-spin"
-            src={`${import.meta.env.BASE_URL}/images/react.svg`}
-          />
-        </a>
+    <div
+      className="flex flex-col items-center justify-center text-center tracking-widest"
+      id="home-landing">
+      <div className="text-xl sm:text-4xl" id="landing-heading" role="heading">
+        <h1>
+          Hello, I&apos;m{" "}
+          <span className="font-bold text-general-40/80">Islam</span>.
+        </h1>
+        <h1>I&apos;m a full stack web developer.</h1>
       </div>
-      <div className="flex flex-col items-center justify-center text-center">
-        <h1 className="text-3xl font-bold">Vite + React</h1>
-        <button
-          className="my-2 rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-700"
-          onClick={() => {
-            const incrementValue = 1;
-            setCount(prevCount => prevCount + incrementValue);
-          }}
-          type="button">
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-    </>
+      <button
+        className="mt-4 w-1/3 min-w-44 rounded-full p-3 text-lg text-general-40/80 outline outline-2 outline-general-40/80 hover:font-bold hover:outline-4"
+        type="button">
+        <a href="#">Begin the Tour</a>
+      </button>
+    </div>
   );
 }
 
