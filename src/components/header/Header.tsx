@@ -17,12 +17,8 @@ function Header() {
         <a
           aria-label="Home"
           className="aspect-square h-full object-contain p-[5px]"
-          href={`${import.meta.env.BASE_URL}/`}>
-          <img
-            alt="Logo"
-            draggable="false"
-            src={`${import.meta.env.BASE_URL}/favicon.ico`}
-          />
+          href="/">
+          <img alt="Logo" draggable="false" src="/favicon.ico" />
         </a>
 
         {/* Hamburger button for mobile */}
@@ -48,21 +44,21 @@ function Header() {
           <li
             className="flex justify-center py-2 hover:underline sm:py-0"
             role="none">
-            <a href={`${import.meta.env.BASE_URL}/`} role="menuitem">
+            <a href="/" role="menuitem">
               Home
             </a>
           </li>
           <li
             className="flex justify-center py-2 hover:underline sm:py-0"
             role="none">
-            <a href={`${import.meta.env.BASE_URL}/projects`} role="menuitem">
+            <a href="/projects" role="menuitem">
               Projects
             </a>
           </li>
           <li
             className="flex justify-center py-2 hover:underline sm:py-0"
             role="none">
-            <a href={`${import.meta.env.BASE_URL}/about`} role="menuitem">
+            <a href="/about" role="menuitem">
               About
             </a>
           </li>
