@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
         general: {
-          0: "FFFFFF",
+          0: "#FFFFFF",
           10: "#F2F2F0",
           40: "#79818C",
           60: "#626973",
