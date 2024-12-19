@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Header />
-      <main>
+      <main aria-label="Main content">
         <Routes>
           <Route element={<Home />} path={`${import.meta.env.BASE_URL}/`} />
           <Route element={<NotFound />} path="*" />

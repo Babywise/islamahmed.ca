@@ -104,6 +104,7 @@ function NotFound() {
   return (
     <>
       <Canvas
+        aria-hidden="true"
         className="aspect-video max-h-52 max-w-[50%]"
         gl={{ antialias: true }}
         id="canvas">
@@ -135,7 +136,7 @@ function NotFound() {
         </Suspense>
       </Canvas>
 
-      <p className="text-center">
+      <p aria-label="Page not found" className="text-center" role="alert">
         The page you are looking for does not exist.
       </p>
     </>

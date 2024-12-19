@@ -5,18 +5,26 @@ function Home() {
   return (
     <div
       className="flex flex-col items-center justify-center text-center tracking-widest"
-      id="home-landing">
-      <div className="text-xl sm:text-4xl" id="landing-heading" role="heading">
+      id="home-landing"
+      role="none">
+      <div
+        className="text-xl sm:text-4xl"
+        id="landing-heading"
+        role="presentation">
         <h1>
           Hello, I&apos;m{" "}
-          <span className="font-bold text-general-40/80">Islam</span>.
+          <span className="font-bold text-general-40">Islam</span>.
         </h1>
         <h1>I&apos;m a full stack web developer.</h1>
       </div>
       <button
-        className="mt-4 w-1/3 min-w-44 rounded-full p-3 text-lg text-general-40/80 outline outline-2 outline-general-40/80 hover:font-bold hover:outline-4"
+        className="mt-4 w-1/3 min-w-44"
+        onClick={() => {
+          const element = document.getElementById("start");
+          element?.scrollIntoView({ behavior: "smooth" });
+        }}
         type="button">
-        <a href="#">Begin the Tour</a>
+        <span>Begin the Tour</span>
       </button>
     </div>
   );
