@@ -9,7 +9,45 @@ main {
 main,
 header,
 footer {
-  @apply px-10;
+  @apply px-10 text-general-10/75;
+}
+
+header,
+footer {
+  @apply z-50 bg-general-60/25;
+}
+
+a {
+  @apply rounded p-2;
+  @apply focus:outline-none focus:ring-2 focus:ring-general-10/75;
+}
+
+li {
+  @apply flex items-center justify-center;
+  @apply hover:font-bold hover:text-general-80 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.95)];
+}
+
+ul {
+  @apply bg-general-40/35;
+}
+
+button {
+  @apply rounded-full p-3 text-lg text-general-40;
+  @apply outline outline-2 outline-general-40;
+  @apply hover:font-bold hover:text-general-80 hover:outline-4 hover:outline-general-80 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.75)];
+  @apply focus:outline-none focus:ring-4 focus:!ring-general-10/75;
+}
+
+.hamburger-button {
+  @apply space-y-1.5;
+}
+
+.hamburger-button > span {
+  @apply block h-0.5 w-6 bg-general-40;
+}
+
+button:hover .hamburger-button > span {
+  @apply bg-general-80;
 }
 
 @layer components {
