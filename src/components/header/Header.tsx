@@ -50,11 +50,6 @@ function Header() {
           id="navigation-menu"
           role="menubar">
           <li className="sm:py-0" role="none">
-            <a className="rounded sm:py-0" href="/" role="menuitem">
-              Home
-            </a>
-          </li>
-          <li className="sm:py-0" role="none">
             <a className="rounded sm:py-0" href="/projects" role="menuitem">
               Projects
             </a>
