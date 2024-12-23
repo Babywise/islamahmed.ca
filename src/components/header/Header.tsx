@@ -13,13 +13,14 @@ function Header() {
       {/* Navbar */}
       <nav
         aria-label="Navbar"
-        className="flex size-full items-center justify-between">
+        className="flex size-full max-h-[50px] items-center justify-between">
         <a
           aria-label="Home"
-          className="logo flex aspect-square h-full max-h-[50px] items-center justify-center object-contain p-0"
+          className="logo flex aspect-auto items-center justify-start p-0"
           href="/">
+          {/* Logo */}
           <svg
-            fill="currentColor"
+            className="h-[50px] fill-current"
             viewBox="0 0 1000 1285.05"
             xmlns="http://www.w3.org/2000/svg">
             <path d="M509.59,1010.14c-66.49,0-98.46-52.43-98.46-117.64,0-102.29,24.29-245.5,24.29-407.9,0-129.15-16.62-170.06-16.62-189.24,0-14.07,14.07-21.74,38.36-21.74,88.23,0,140.65,47.31,140.65,107.41,0,88.23-39.64,337.57-39.64,476.94,0,93.34,14.07,103.57,14.07,116.36,0,25.57-39.64,35.8-62.65,35.8Z" />
