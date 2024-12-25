@@ -35,9 +35,9 @@ const Cursor = () => {
         // Calculate the distance between current cursor position and target mouse position
         // Multiply by 0.2 to create smooth easing effect (lower = smoother but slower)
         const deltaX =
-          (mousePosition.current.x - currentPosition.current.x) * 0.2;
+          (mousePosition.current.x - currentPosition.current.x) * 0.75;
         const deltaY =
-          (mousePosition.current.y - currentPosition.current.y) * 0.2;
+          (mousePosition.current.y - currentPosition.current.y) * 0.75;
 
         // Update the cursor position by adding the calculated delta
         // This creates a smooth animation instead of jumping directly to the mouse position
