@@ -187,6 +187,7 @@ const typescriptConfig = tseslint.config({
   rules: {
     /* Off Rules */
 
+    "@typescript-eslint/prefer-nullish-coalescing": ["off"], // (off) Allows `??` nullish coalescing // "warn" Enforces nullish coalescing instead of `||`
     "@typescript-eslint/no-non-null-assertion": ["off"], // (off) Allows `!` non-null assertions // "warn" Discourages using `!` for non-null assertions
     "@typescript-eslint/no-inferrable-types": ["off"], // (off) Allows inferrable types // "warn" disallows unnecessary type declarations
     "@typescript-eslint/no-empty-function": ["off"], // (off) Allows empty functions // "error" disallows empty function bodies
