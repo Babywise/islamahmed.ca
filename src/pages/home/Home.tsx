@@ -18,7 +18,7 @@ function Home() {
         <h1>I&apos;m a full stack web developer.</h1>
       </div>
       <button
-        className="mt-4 w-1/3 min-w-44"
+        className="mt-4 w-1/3 min-w-48"
         onClick={() => {
           const element = document.getElementById("start");
           element?.scrollIntoView({ behavior: "smooth" });
