@@ -1,55 +1,55 @@
-@tailwind base;
+/* Import Tailwind component and utility layers */
 @tailwind components;
 @tailwind utilities;
 
-/* Base styles */
-@layer base {
-  body {
-    @apply cursor-none;
-  }
-
-  a,
-  button,
-  input[type="submit"],
-  input[type="button"],
-  [role="button"],
-  [role="link"],
-  *[onclick],
-  *[style*="cursor: pointer"],
-  *[style*="cursor:pointer"] {
-    @apply cursor-none;
-  }
-}
-
-/* Component styles */
+/* Component styles
+ * These styles define the custom cursor's appearance and behavior
+ */
 @layer components {
+  /* Inner dot of the custom cursor
+   * Small, centered dot that follows mouse movement
+   */
   .cursor-dot {
     @apply pointer-events-none fixed z-[9999] size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-general-10 opacity-0 mix-blend-difference;
     @apply transition-[opacity,transform] duration-[75ms,50ms] ease-out;
   }
 
+  /* Outer ring of the custom cursor
+   * Larger ring that provides visual feedback for interactions
+   */
   .cursor-ring {
     @apply pointer-events-none fixed z-[9998] size-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-general-10/80 opacity-0 mix-blend-difference;
     @apply transition-all duration-150 ease-out;
   }
 }
 
-/* Utility styles */
+/* Utility styles
+ * These styles handle cursor states and animations
+ */
 @layer utilities {
+  /* Makes cursor elements visible when active */
   .cursor-visible {
     @apply opacity-100;
   }
 
+  /* Styles for cursor dot when clicking */
   .cursor-dot-clicking {
   }
 
+  /* Styles for cursor dot when hovering over interactive elements */
   .cursor-dot-hovering {
   }
 
+  /* Styles for cursor ring when clicking
+   * Increases opacity and adjusts border
+   */
   .cursor-ring-clicking {
     @apply border-2 !border-general-10/95;
   }
 
+  /* Styles for cursor ring when hovering over interactive elements
+   * Adjusts opacity for subtle feedback
+   */
   .cursor-ring-hovering {
     @apply border-2 border-general-10/50;
   }

@@ -1,71 +1,114 @@
+/* Import Tailwind's layers */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-main {
-  @apply flex size-full min-h-[calc(100vh-56px)] flex-col items-center justify-center;
+/* Base styles for HTML elements
+ * These styles define the foundational look and feel of the site
+ * They apply to raw HTML elements without classes
+ */
+@layer base {
+  /* Main content area styles */
+  main {
+    @apply flex size-full min-h-[calc(100vh-56px)] flex-col items-center justify-center;
+  }
+
+  /* Common spacing and text styles for major layout elements */
+  main,
+  header,
+  footer {
+    @apply px-10 text-general-10/75;
+  }
+
+  /* Z-index and background for header and footer */
+  header,
+  footer {
+    @apply z-50 bg-general-60/25;
+  }
+
+  /* Interactive link styles with focus states */
+  a {
+    @apply rounded p-2;
+    @apply focus:outline-none focus:ring-2 focus:ring-general-10/75;
+  }
+
+  /* Navigation list items with hover effects */
+  li {
+    @apply flex items-center justify-center;
+    @apply hover:font-bold hover:text-general-80 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.95)];
+  }
+
+  /* Navigation list background */
+  ul {
+    @apply bg-general-40/35;
+  }
+
+  /* Button styles with hover and focus states */
+  button {
+    @apply rounded-full p-3 text-xl text-general-40;
+    @apply outline outline-2 outline-general-40;
+    @apply hover:font-bold hover:text-general-80 hover:outline-4 hover:outline-general-80 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.75)];
+    @apply focus:outline-none focus:ring-4 focus:!ring-general-10/75;
+  }
+
+  /* Custom cursor styles for interactive elements
+   * Hides default cursor for elements that will use custom cursor
+   */
+  body,
+  a,
+  button,
+  input[type="submit"],
+  input[type="button"],
+  [role="button"],
+  [role="link"],
+  *[onclick],
+  *[style*="cursor: pointer"],
+  *[style*="cursor:pointer"] {
+    @apply cursor-none;
+  }
 }
 
-main,
-header,
-footer {
-  @apply px-10 text-general-10/75;
-}
-
-header,
-footer {
-  @apply z-50 bg-general-60/25;
-}
-
-a {
-  @apply rounded p-2;
-  @apply focus:outline-none focus:ring-2 focus:ring-general-10/75;
-}
-
-li {
-  @apply flex items-center justify-center;
-  @apply hover:font-bold hover:text-general-80 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.95)];
-}
-
-ul {
-  @apply bg-general-40/35;
-}
-
-button {
-  @apply rounded-full p-3 text-lg text-general-40;
-  @apply outline outline-2 outline-general-40;
-  @apply hover:font-bold hover:text-general-80 hover:outline-4 hover:outline-general-80 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.75)];
-  @apply focus:outline-none focus:ring-4 focus:!ring-general-10/75;
-}
-
-.hamburger-button {
-  @apply space-y-1.5;
-}
-
-.hamburger-button > span {
-  @apply block h-0.5 w-6 bg-general-40;
-}
-
-button:hover .hamburger-button > span {
-  @apply bg-general-80;
-}
-
+/* Reusable components
+ * These styles define reusable UI patterns and components
+ */
 @layer components {
+  /* Hamburger menu button styles */
+  .hamburger-button {
+    @apply space-y-1.5;
+  }
+
+  /* Individual hamburger menu lines */
+  .hamburger-button > span {
+    @apply block h-0.5 w-6 bg-general-40;
+  }
+
+  /* Hover state for hamburger menu lines */
+  button:hover .hamburger-button > span {
+    @apply bg-general-80;
+  }
+
+  /* Logo styles with hover effects */
+  .logo {
+    @apply transition-all duration-200 ease-in-out;
+    @apply hover:text-general-80 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.75)];
+  }
+
+  /* Spinning animation for logo */
   .logo-spin {
     animation: spin 20s linear infinite;
   }
 }
 
-.logo {
-  @apply transition-all duration-200 ease-in-out;
-  @apply hover:text-general-80 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.75)];
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/* Animations and keyframes
+ * Define custom animations used throughout the site
+ */
+@layer utilities {
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 }

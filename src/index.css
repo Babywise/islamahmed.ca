@@ -1,13 +1,24 @@
+/* Import Tailwind's layers */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  @apply m-0 box-border p-0;
-}
+/* Base styles that apply to all elements
+ * These styles set up the foundation for the entire application
+ */
+@layer base {
+  /* Reset box model for all elements */
+  * {
+    @apply m-0 box-border p-0;
+  }
 
-:root {
-  @apply relative bg-black/95 text-white/85;
-  @apply subpixel-antialiased [font-synthesis:none] [text-rendering:optimizeLegibility];
-  @apply font-roboto text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl;
+  /* Root element styles
+   * Sets up the base typography, colors, and text rendering
+   * Includes responsive font sizing using Tailwind breakpoints
+   */
+  :root {
+    @apply relative bg-black/95 text-white/85;
+    @apply subpixel-antialiased [font-synthesis:none] [text-rendering:optimizeLegibility];
+    @apply font-roboto text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl;
+  }
 }
