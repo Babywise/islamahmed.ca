@@ -12,6 +12,7 @@ const Cursor = () => {
   // State for tracking cursor interactions
   const [isClicking, setIsClicking] = useState(false); // Tracks mouse click state
   const [isHovering, setIsHovering] = useState(false); // Tracks hover state over interactive elements
+  const [isVisible, setIsVisible] = useState(true); // Tracks visibility state of the cursor
 
   // Refs for DOM elements and animation
   const cursorDotRef = useRef<HTMLDivElement>(null); // Reference to the inner dot element
@@ -100,6 +101,22 @@ const Cursor = () => {
     };
 
     /**
+     * Handles the mouse enter event.
+     * Updates state to show the cursor.
+     */
+    const handleMouseEnter = () => {
+      setIsVisible(true);
+    };
+
+    /**
+     * Handles the mouse leave event.
+     * Updates state to hide the cursor.
+     */
+    const handleMouseLeave = () => {
+      setIsVisible(false);
+    };
+
+    /**
      * Checks if the mouse is hovering over an interactive element.
      * Updates hover state to show appropriate visual feedback.
      * @param e The mouse event for target element detection.
@@ -115,6 +132,8 @@ const Cursor = () => {
     window.addEventListener("mousemove", checkHover);
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
+    document.body.addEventListener("mouseenter", handleMouseEnter);
+    document.body.addEventListener("mouseleave", handleMouseLeave);
 
     // Start the animation loop
     requestRef.current = requestAnimationFrame(animate);
@@ -125,6 +144,8 @@ const Cursor = () => {
       window.removeEventListener("mousemove", checkHover);
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
+      document.body.removeEventListener("mouseenter", handleMouseEnter);
+      document.body.removeEventListener("mouseleave", handleMouseLeave);
 
       if (requestRef.current) {
         cancelAnimationFrame(requestRef.current);
@@ -141,11 +162,11 @@ const Cursor = () => {
   return (
     <>
       <div
-        className={`cursor-dot cursor-visible ${isHovering ? "cursor-dot-hovering" : ""} ${isClicking ? "cursor-dot-clicking" : ""}`}
+        className={`cursor-dot ${isVisible ? "cursor-visible" : ""} ${isHovering ? "cursor-dot-hovering" : ""} ${isClicking ? "cursor-dot-clicking" : ""}`}
         ref={cursorDotRef}
       />
       <div
-        className={`cursor-ring cursor-visible ${isHovering ? "cursor-ring-hovering" : ""} ${isClicking ? "cursor-ring-clicking" : ""}`}
+        className={`cursor-ring ${isVisible ? "cursor-visible" : ""} ${isHovering ? "cursor-ring-hovering" : ""} ${isClicking ? "cursor-ring-clicking" : ""}`}
         ref={cursorRingRef}
       />
     </>
