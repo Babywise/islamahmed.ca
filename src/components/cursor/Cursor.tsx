@@ -12,7 +12,7 @@ const Cursor = () => {
   // State for tracking cursor interactions
   const [isClicking, setIsClicking] = useState(false); // Tracks mouse click state
   const [isHovering, setIsHovering] = useState(false); // Tracks hover state over interactive elements
-  const [isVisible, setIsVisible] = useState(true); // Tracks visibility state of the cursor
+  const [isVisible, setIsVisible] = useState(false); // Tracks visibility state of the cursor
 
   // Refs for DOM elements and animation
   const cursorDotRef = useRef<HTMLDivElement>(null); // Reference to the inner dot element
