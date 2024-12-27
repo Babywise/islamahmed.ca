@@ -71,62 +71,62 @@ const Cursor = () => {
     [isHovering, isClicking]
   );
 
+  /**
+   * Updates the cursor position based on the mouse event.
+   * Stores the raw mouse coordinates for later interpolation.
+   * @param e The mouse event containing cursor coordinates.
+   */
+  const updateCursorPosition = (e: MouseEvent) => {
+    mousePosition.current = {
+      x: e.clientX,
+      y: e.clientY
+    };
+  };
+
+  /**
+   * Handles the mouse down event.
+   * Updates state to show click animation effects.
+   */
+  const handleMouseDown = () => {
+    setIsClicking(true);
+  };
+
+  /**
+   * Handles the mouse up event.
+   * Removes click animation effects.
+   */
+  const handleMouseUp = () => {
+    setIsClicking(false);
+  };
+
+  /**
+   * Handles the mouse enter event.
+   * Updates state to show the cursor.
+   */
+  const handleMouseEnter = () => {
+    setIsVisible(true);
+  };
+
+  /**
+   * Handles the mouse leave event.
+   * Updates state to hide the cursor.
+   */
+  const handleMouseLeave = () => {
+    setIsVisible(false);
+  };
+
+  /**
+   * Checks if the mouse is hovering over an interactive element.
+   * Updates hover state to show appropriate visual feedback.
+   * @param e The mouse event for target element detection.
+   */
+  const checkHover = (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    const interactiveElement = traverseUpForInteractiveElement(target);
+    setIsHovering(Boolean(interactiveElement));
+  };
+
   useEffect(() => {
-    /**
-     * Updates the cursor position based on the mouse event.
-     * Stores the raw mouse coordinates for later interpolation.
-     * @param e The mouse event containing cursor coordinates.
-     */
-    const updateCursorPosition = (e: MouseEvent) => {
-      mousePosition.current = {
-        x: e.clientX,
-        y: e.clientY
-      };
-    };
-
-    /**
-     * Handles the mouse down event.
-     * Updates state to show click animation effects.
-     */
-    const handleMouseDown = () => {
-      setIsClicking(true);
-    };
-
-    /**
-     * Handles the mouse up event.
-     * Removes click animation effects.
-     */
-    const handleMouseUp = () => {
-      setIsClicking(false);
-    };
-
-    /**
-     * Handles the mouse enter event.
-     * Updates state to show the cursor.
-     */
-    const handleMouseEnter = () => {
-      setIsVisible(true);
-    };
-
-    /**
-     * Handles the mouse leave event.
-     * Updates state to hide the cursor.
-     */
-    const handleMouseLeave = () => {
-      setIsVisible(false);
-    };
-
-    /**
-     * Checks if the mouse is hovering over an interactive element.
-     * Updates hover state to show appropriate visual feedback.
-     * @param e The mouse event for target element detection.
-     */
-    const checkHover = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const interactiveElement = traverseUpForInteractiveElement(target);
-      setIsHovering(Boolean(interactiveElement));
-    };
-
     // Set up event listeners for cursor interactions
     window.addEventListener("mousemove", updateCursorPosition);
     window.addEventListener("mousemove", checkHover);
@@ -160,7 +160,7 @@ const Cursor = () => {
    * Both elements are animated and styled based on clicking and hovering states.
    */
   return (
-    <>
+    <div aria-hidden="true" id="cursor">
       <div
         className={`cursor-dot ${isVisible ? "cursor-visible" : ""} ${isHovering ? "cursor-dot-hovering" : ""} ${isClicking ? "cursor-dot-clicking" : ""}`}
         ref={cursorDotRef}
@@ -169,7 +169,7 @@ const Cursor = () => {
         className={`cursor-ring ${isVisible ? "cursor-visible" : ""} ${isHovering ? "cursor-ring-hovering" : ""} ${isClicking ? "cursor-ring-clicking" : ""}`}
         ref={cursorRingRef}
       />
-    </>
+    </div>
   );
 };
 
