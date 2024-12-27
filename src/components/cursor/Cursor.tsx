@@ -36,9 +36,9 @@ const Cursor = () => {
         // Calculate the distance between current cursor position and target mouse position
         // Multiply by 0.2 to create smooth easing effect (lower = smoother but slower)
         const deltaX =
-          (mousePosition.current.x - currentPosition.current.x) * 0.75;
+          (mousePosition.current.x - currentPosition.current.x) * 0.2;
         const deltaY =
-          (mousePosition.current.y - currentPosition.current.y) * 0.75;
+          (mousePosition.current.y - currentPosition.current.y) * 0.2;
 
         // Update the cursor position by adding the calculated delta
         // This creates a smooth animation instead of jumping directly to the mouse position
@@ -58,7 +58,7 @@ const Cursor = () => {
           // 1. translate3d for hardware-accelerated positioning
           // 2. translate(-50%, -50%) to center the cursor on the mouse point
           // 3. scale for hover/click effects
-          cursorDotRef.current.style.transform = `translate3d(${String(currentPosition.current.x)}px, ${String(currentPosition.current.y)}px, 0) translate(-50%, -50%) ${dotScale}`;
+          cursorDotRef.current.style.transform = `translate3d(${String(mousePosition.current.x)}px, ${String(mousePosition.current.y)}px, 0) translate(-50%, -50%) ${dotScale}`;
           cursorRingRef.current.style.transform = `translate3d(${String(currentPosition.current.x)}px, ${String(currentPosition.current.y)}px, 0) translate(-50%, -50%) ${ringScale}`;
         }
       }
@@ -81,6 +81,7 @@ const Cursor = () => {
       x: e.clientX,
       y: e.clientY
     };
+    setIsVisible(true);
   };
 
   /**
