@@ -133,6 +133,8 @@ const Cursor = () => {
     window.addEventListener("mousemove", checkHover);
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("dragstart", handleMouseDown);
+    window.addEventListener("dragend", handleMouseUp);
     document.body.addEventListener("mouseenter", handleMouseEnter);
     document.body.addEventListener("mouseleave", handleMouseLeave);
 
@@ -145,6 +147,8 @@ const Cursor = () => {
       window.removeEventListener("mousemove", checkHover);
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("dragstart", handleMouseDown);
+      window.removeEventListener("dragend", handleMouseUp);
       document.body.removeEventListener("mouseenter", handleMouseEnter);
       document.body.removeEventListener("mouseleave", handleMouseLeave);
 
