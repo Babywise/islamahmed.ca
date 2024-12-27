@@ -81,6 +81,7 @@ const Cursor = () => {
       x: e.clientX,
       y: e.clientY
     };
+    setIsVisible(true);
   };
 
   /**
