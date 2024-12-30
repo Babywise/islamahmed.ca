@@ -17,7 +17,7 @@
   main,
   header,
   footer {
-    @apply px-10 text-general-10/75;
+    @apply relative px-10 text-general-10/75;
   }
 
   /* Z-index and background for header and footer */
