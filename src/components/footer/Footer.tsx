@@ -3,7 +3,9 @@
  */
 function Footer() {
   return (
-    <footer aria-label="Footer" className="py-4 text-center">
+    <footer
+      aria-label="Footer"
+      className="flex h-[56px] items-center justify-center text-xs">
       <p aria-label="Copyright">
         &copy; 2024 Islam Ahmed. All rights reserved.
       </p>
