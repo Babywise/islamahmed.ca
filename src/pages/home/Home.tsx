@@ -1,9 +1,14 @@
+import "./Home.css";
+
+import SocialNav from "../../components/social/SocialNav";
+
 /**
  * Home page component.
  */
 function Home() {
   return (
     <>
+      <SocialNav />
       {/* <!-- Hero section --> */}
       <section id="hero">
         <div
@@ -21,7 +26,7 @@ function Home() {
             <h1>I&apos;m a full stack web developer.</h1>
           </div>
           <button
-            className="mt-4 w-1/3 min-w-48"
+            className="my-4 w-1/3 min-w-48"
             onClick={() => {
               const element = document.getElementById("start");
               element?.scrollIntoView({ behavior: "smooth" });
