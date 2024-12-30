@@ -1,6 +1,7 @@
 import "./Cursor.css";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 import { traverseUpForInteractiveElement } from "./utils/interactiveElements";
 
@@ -164,17 +165,18 @@ const Cursor = () => {
    * 2. A larger ring (cursor-ring) that provides visual feedback for interactions
    * Both elements are animated and styled based on clicking and hovering states.
    */
-  return (
-    <div aria-hidden="true" id="cursor">
+  return createPortal(
+    <>
       <div
-        className={`cursor-dot ${isVisible ? "cursor-visible" : ""} ${isHovering ? "cursor-dot-hovering" : ""} ${isClicking ? "cursor-dot-clicking" : ""}`}
+        className={`cursor-dot ${isVisible ? "cursor-visible" : ""} ${isClicking ? "cursor-dot-clicking" : ""} ${isHovering ? "cursor-dot-hovering" : ""}`}
         ref={cursorDotRef}
       />
       <div
-        className={`cursor-ring ${isVisible ? "cursor-visible" : ""} ${isHovering ? "cursor-ring-hovering" : ""} ${isClicking ? "cursor-ring-clicking" : ""}`}
+        className={`cursor-ring ${isVisible ? "cursor-visible" : ""} ${isClicking ? "cursor-ring-clicking" : ""} ${isHovering ? "cursor-ring-hovering" : ""}`}
         ref={cursorRingRef}
       />
-    </div>
+    </>,
+    document.getElementById("cursor")!
   );
 };
 
