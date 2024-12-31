@@ -4,19 +4,19 @@
 @layer components {
   .social-nav {
     @apply z-50;
-    @apply sticky top-[58px] h-[56px];
+    @apply sticky top-0 h-[56px];
     @apply flex items-center justify-center;
     @apply mt-4;
   }
 
   .social-nav ul {
-    @apply flex items-center justify-center gap-4 p-[4px];
-    @apply aspect-square h-full w-[272px] border-2 border-white/10 bg-general-80/50 text-general-10/75;
-    @apply rounded-full backdrop-blur-sm;
+    @apply flex items-center justify-center gap-4;
+    @apply border-2 border-general-10/10 bg-general-80/50 text-general-10/75;
+    @apply h-full rounded-full backdrop-blur-sm;
   }
 
   .social-nav a {
-    @apply flex aspect-square h-full items-center justify-center rounded-full bg-general-10/15 text-[22px] backdrop-blur-sm;
+    @apply m-[3px] flex items-center justify-center rounded-full bg-general-10/15 p-[8px];
     @apply hover:-translate-y-1 hover:bg-general-10/80 hover:text-general-40;
     @apply transition-all duration-300 ease-in-out;
   }
