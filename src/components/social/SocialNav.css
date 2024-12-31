@@ -6,7 +6,7 @@
     @apply z-50;
     @apply sticky top-0 h-[56px];
     @apply flex items-center justify-center;
-    @apply mt-4;
+    @apply my-4;
   }
 
   .social-nav ul {
