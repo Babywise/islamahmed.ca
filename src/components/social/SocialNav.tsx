@@ -1,8 +1,7 @@
 import "./SocialNav.css";
 
 import type { ReactNode } from "react";
-import { FaDiscord, FaGithub, FaLinkedin } from "react-icons/fa6";
-import { SiBehance } from "react-icons/si";
+import { FaBehance, FaGithub, FaLinkedin } from "react-icons/fa6";
 
 interface SocialLink {
   icon: ReactNode;
@@ -12,24 +11,19 @@ interface SocialLink {
 
 const socialLinks: SocialLink[] = [
   {
-    icon: <FaLinkedin />,
+    icon: <FaLinkedin size={32} />,
     label: "LinkedIn",
     url: "https://linkedin.com/in/issia"
   },
   {
-    icon: <FaGithub />,
+    icon: <FaGithub size={32} />,
     label: "GitHub",
     url: "https://github.com/babywise"
   },
   {
-    icon: <SiBehance />,
+    icon: <FaBehance size={32} />,
     label: "Behance",
     url: "https://behance.net/islamdoesart"
-  },
-  {
-    icon: <FaDiscord />,
-    label: "Discord",
-    url: "https://discord.com/users/197564968931950592"
   }
 ];
 
