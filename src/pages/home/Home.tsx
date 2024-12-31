@@ -1,5 +1,3 @@
-import "./Home.css";
-
 import SocialNav from "../../components/social/SocialNav";
 
 /**
@@ -8,11 +6,10 @@ import SocialNav from "../../components/social/SocialNav";
 function Home() {
   return (
     <>
-      <SocialNav />
       {/* <!-- Hero section --> */}
       <section id="hero">
         <div
-          className="flex min-h-[calc(100vh-56px)] flex-col items-center justify-center text-center tracking-widest"
+          className="flex min-h-[calc(100vh-56px-56px-2rem)] flex-col items-center justify-center text-center tracking-widest"
           id="hero-content"
           role="none">
           <div
@@ -36,6 +33,7 @@ function Home() {
           </button>
         </div>
       </section>
+      <SocialNav />
       {/* <!-- Start section --> */}
       <section id="start">
         <div
