@@ -1,8 +1,0 @@
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-  #hero-content {
-    @apply mt-[-(calc(56px+1rem))];
-  }
-}
