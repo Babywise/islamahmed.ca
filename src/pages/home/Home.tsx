@@ -9,7 +9,7 @@ function Home() {
       {/* <!-- Hero section --> */}
       <section id="hero">
         <div
-          className="flex min-h-[calc(100vh-56px-56px-2rem)] flex-col items-center justify-center text-center tracking-widest"
+          className="flex min-h-[calc(100svh-56px-56px-2rem)] flex-col items-center justify-center text-center tracking-widest"
           id="hero-content"
           role="none">
           <div
