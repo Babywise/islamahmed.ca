@@ -11,17 +11,17 @@ interface SocialLink {
 
 const socialLinks: SocialLink[] = [
   {
-    icon: <FaLinkedin size={32} />,
+    icon: <FaLinkedin size={30} />,
     label: "LinkedIn",
     url: "https://linkedin.com/in/issia"
   },
   {
-    icon: <FaGithub size={32} />,
+    icon: <FaGithub size={30} />,
     label: "GitHub",
     url: "https://github.com/babywise"
   },
   {
-    icon: <FaBehance size={32} />,
+    icon: <FaBehance size={30} />,
     label: "Behance",
     url: "https://behance.net/islamdoesart"
   }
