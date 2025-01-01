@@ -3,21 +3,54 @@
 
 @layer components {
   .social-nav {
-    @apply z-50;
-    @apply sticky top-0 h-[56px];
+    /* Layout and positioning */
+    @apply sticky top-0 z-50;
+    /* Sizing */
+    @apply h-[56px];
+    /* Spacing */
+    @apply my-4 p-[0px];
+    /* Display and alignment */
     @apply flex items-center justify-center;
-    @apply my-4;
   }
 
   .social-nav ul {
-    @apply flex items-center justify-center gap-4;
-    @apply border-2 border-general-10/10 bg-general-80/50 text-general-10/75;
-    @apply h-full rounded-full backdrop-blur-sm;
+    /* Display and alignment */
+    @apply flex items-center justify-center;
+    /* Spacing */
+    @apply gap-[6px] max-h-full;
+    /* Visual styles */
+    @apply border-2 border-general-10/10 ;
+    @apply bg-general-80/50 text-general-10/75;
+    @apply rounded-full backdrop-blur-sm;
+  }
+
+  .social-nav li {
+    /* Spacing */
+    @apply my-[4px];
+  }
+
+  .social-nav li:first-child {
+    /* Spacing */
+    @apply ml-[4px];
+  }
+
+  .social-nav li:last-child {
+    /* Spacing */
+    @apply mr-[4px];
   }
 
   .social-nav a {
-    @apply m-[3px] flex items-center justify-center rounded-full bg-general-10/15 p-[8px];
+    /* Display and alignment */
+    @apply flex items-center justify-center;
+    /* Visual styles */
+    @apply rounded-full bg-general-10/15 p-[0px];
+    /* Interactive states and animations */
     @apply hover:-translate-y-1 hover:bg-general-10/80 hover:text-general-40;
     @apply transition-all duration-300 ease-in-out;
+  }
+
+  .social-nav svg {
+    /* Sizing and spacing */
+    @apply size-full m-[4px] p-[4px];
   }
 }
