@@ -1,0 +1,13 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .footer-content {
+    /* Layout and positioning */
+    @apply flex items-center justify-end;
+    /* Sizing */
+    @apply h-[56px];
+    /* Typography */
+    @apply text-[10px];
+  }
+}
