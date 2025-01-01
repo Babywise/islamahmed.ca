@@ -8,7 +8,7 @@
     /* Sizing */
     @apply h-[56px];
     /* Spacing */
-    @apply my-4 p-[0px];
+    @apply mb-4 p-[0px];
     /* Display and alignment */
     @apply flex items-center justify-center;
   }
@@ -17,9 +17,9 @@
     /* Display and alignment */
     @apply flex items-center justify-center;
     /* Spacing */
-    @apply gap-[6px] max-h-full;
+    @apply max-h-full gap-[6px];
     /* Visual styles */
-    @apply border-2 border-general-10/10 ;
+    @apply border-2 border-general-10/10;
     @apply bg-general-80/50 text-general-10/75;
     @apply rounded-full backdrop-blur-sm;
   }
@@ -51,6 +51,6 @@
 
   .social-nav svg {
     /* Sizing and spacing */
-    @apply size-full m-[4px] p-[4px];
+    @apply m-[4px] size-full p-[4px];
   }
 }

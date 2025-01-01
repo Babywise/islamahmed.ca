@@ -1,0 +1,38 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* Hero Section Styles */
+  .hero-content {
+    /* Layout and positioning */
+    @apply flex flex-col items-center justify-center text-center;
+    /* Sizing */
+    @apply mt-[calc(28px+0.5rem)] min-h-[calc(100svh-56px-84px-1.5rem)];
+  }
+
+  .hero-content h1 {
+    /* Typography */
+    @apply text-2xl sm:text-4xl;
+  }
+
+  .hero-content h1 span {
+    /* Highlighted text */
+    @apply font-bold text-general-40;
+  }
+
+  .hero-content button {
+    /* Button styles */
+    @apply my-4 w-1/3 min-w-48;
+  }
+
+  /* Start Section Styles */
+  .start-content {
+    /* Layout */
+    @apply flex flex-col;
+  }
+
+  .start-content h1 {
+    /* Typography */
+    @apply text-2xl font-bold;
+  }
+}
