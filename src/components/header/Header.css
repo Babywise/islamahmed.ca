@@ -1,0 +1,80 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* Global Styles */
+  header {
+    /* Layout and positioning */
+    @apply sticky top-0;
+    /* Display and alignment */
+    @apply flex items-center justify-center overflow-x-hidden;
+    /* Sizing */
+    @apply h-[56px];
+    /* Typography */
+    @apply font-bold tracking-widest;
+  }
+
+  /* Header Navigation Styles */
+  .header-nav {
+    /* Display and alignment */
+    @apply flex items-center justify-between;
+    /* Sizing */
+    @apply size-full max-h-[50px];
+  }
+
+  /* Link Styles */
+  .header-nav a {
+    /* Display and alignment */
+    @apply flex items-center justify-start;
+    /* Sizing */
+    @apply h-full p-0;
+  }
+
+  .header-nav a svg {
+    /* Color */
+    @apply fill-current;
+    /* Sizing */
+    @apply h-full;
+  }
+
+  /* Button Styles */
+  .header-nav button {
+    /* Sizing */
+    @apply p-0;
+    /* Hide button on non-small screens */
+    @apply sm:hidden;
+  }
+
+  .header-nav button svg {
+    /* Color */
+    @apply fill-current;
+    /* Sizing */
+    @apply size-full p-[4px];
+  }
+
+  /* Navigation Menu Styles */
+  .header-nav ul {
+    /* Layout and positioning */
+    @apply fixed right-0 top-[56px];
+    /* Sizing */
+    @apply w-full p-4;
+    /* Transform and transition */
+    @apply transform transition-none;
+    /* Styling for non-small screens */
+    @apply sm:relative sm:top-0 sm:flex sm:w-auto sm:translate-x-0 sm:items-center sm:gap-4 sm:bg-transparent sm:p-0;
+  }
+
+  .header-nav li {
+    /* Sizing */
+    @apply sm:py-0;
+  }
+
+  .header-nav li a {
+    /* Link styles */
+    @apply rounded;
+    /* Spacing */
+    @apply p-2;
+    /* Styling for non-small screens */
+    @apply sm:px-1 sm:py-0;
+  }
+}

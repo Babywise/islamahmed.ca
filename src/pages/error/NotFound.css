@@ -1,0 +1,12 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .not-found-content {
+    @apply flex min-h-[calc(100svh-56px)] flex-col items-center justify-center;
+  }
+
+  .not-found-content #canvas {
+    @apply aspect-video max-h-52 max-w-[50%];
+  }
+}
