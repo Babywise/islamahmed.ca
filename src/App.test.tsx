@@ -19,6 +19,27 @@ vi.mock("./pages/error/NotFound", () => ({
   default: () => <div data-testid="not-found-page">404 Page</div>
 }));
 
+vi.mock("./components/cursor/Cursor", () => ({
+  /**
+   * Mock Cursor component.
+   */
+  default: () => <div data-testid="cursor">Cursor</div>
+}));
+
+vi.mock("./components/header/Header", () => ({
+  /**
+   * Mock Header component.
+   */
+  default: () => <div data-testid="header">Header</div>
+}));
+
+vi.mock("./components/footer/Footer", () => ({
+  /**
+   * Mock Footer component.
+   */
+  default: () => <div data-testid="footer">Footer</div>
+}));
+
 /**
  * Wraps the given React node in a Router provider for testing.
  * @param ReactNode The React node to wrap.
@@ -31,45 +52,71 @@ const RouterWrapper = ({ children }: { children: ReactNode }) => (
 );
 
 describe("app", () => {
-  beforeEach(() => {
-    // Reset the URL before each test
-    window.history.pushState({}, "", "/");
+  describe("render", () => {
+    beforeEach(() => {
+      // Reset the URL before each test
+      window.history.pushState({}, "", "/");
+    });
+
+    test("should render successfully", () => {
+      expect.assertions(1);
+
+      const { container } = render(<App />, { wrapper: RouterWrapper });
+
+      expect(container).toBeInTheDocument();
+    });
+
+    test("should render main successfully", () => {
+      expect.assertions(1);
+
+      const { container } = render(<App />, { wrapper: RouterWrapper });
+
+      expect(container.querySelector("main")).toBeInTheDocument();
+    });
+
+    test("should render header successfully", () => {
+      expect.assertions(1);
+
+      const { getByTestId } = render(<App />, { wrapper: RouterWrapper });
+
+      expect(getByTestId("header")).toBeInTheDocument();
+    });
+
+    test("should render footer successfully", () => {
+      expect.assertions(1);
+
+      const { getByTestId } = render(<App />, { wrapper: RouterWrapper });
+
+      expect(getByTestId("footer")).toBeInTheDocument();
+    });
+
+    test("should render cursor successfully", () => {
+      expect.assertions(1);
+
+      const { getByTestId } = render(<App />, { wrapper: RouterWrapper });
+
+      expect(getByTestId("cursor")).toBeInTheDocument();
+    });
   });
 
-  test("renders the app with main content", () => {
-    expect.assertions(4);
+  describe("routing", () => {
+    test("should render home page by default", () => {
+      expect.assertions(1);
 
-    const { container } = render(<App />, { wrapper: RouterWrapper });
+      const { getByTestId } = render(<App />, { wrapper: RouterWrapper });
 
-    // Test container rendering
-    expect(container).toBeInTheDocument();
+      // Home page should be rendered by default
+      expect(getByTestId("home-page")).toBeInTheDocument();
+    });
 
-    const header = container.querySelector("header");
-    const footer = container.querySelector("footer");
-    const main = container.querySelector("main");
+    test("should render 404 page when route is invalid", () => {
+      expect.assertions(1);
 
-    // Test header, footer and main presence using container
-    expect(header).toBeInTheDocument();
-    expect(footer).toBeInTheDocument();
-    expect(main).toBeInTheDocument();
-  });
+      window.history.pushState({}, "", "/invalid-route");
+      const { getByTestId } = render(<App />, { wrapper: RouterWrapper });
 
-  test("renders home page on root route", () => {
-    expect.assertions(1);
-
-    const { getByTestId } = render(<App />, { wrapper: RouterWrapper });
-
-    // Home page should be rendered by default
-    expect(getByTestId("home-page")).toBeInTheDocument();
-  });
-
-  test("renders 404 page for invalid routes", () => {
-    expect.assertions(1);
-
-    window.history.pushState({}, "", "/invalid-route");
-    const { getByTestId } = render(<App />, { wrapper: RouterWrapper });
-
-    // Should show 404 page
-    expect(getByTestId("not-found-page")).toBeInTheDocument();
+      // Should show 404 page
+      expect(getByTestId("not-found-page")).toBeInTheDocument();
+    });
   });
 });
