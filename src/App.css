@@ -34,7 +34,7 @@
   /* Interactive link styles with focus states */
   a {
     @apply rounded p-2;
-    @apply focus:outline-none focus:ring-2 focus:ring-general-10/75;
+    @apply focus:outline-none focus:ring-2 focus:ring-general-10;
   }
 
   /* Navigation list items with hover effects */
@@ -50,10 +50,10 @@
 
   /* Button styles with hover and focus states */
   button {
-    @apply rounded-full p-3 text-xl text-general-40;
-    @apply outline outline-2 outline-general-40;
+    @apply rounded-full p-3 text-xl text-general-10/75;
+    @apply outline outline-2 outline-general-10/75;
     @apply hover:font-bold hover:text-general-80 hover:outline-4 hover:outline-general-80 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.75)];
-    @apply focus:outline-none focus:ring-4 focus:!ring-general-10/75;
+    @apply focus:outline-none focus:ring-4 focus:!ring-general-10;
   }
 
   /* Custom cursor styles for interactive elements
@@ -78,19 +78,19 @@
  */
 @layer components {
   /* Hamburger menu button styles */
-  .hamburger-button {
+  /* .hamburger-button {
     @apply space-y-1.5;
-  }
+  } */
 
   /* Individual hamburger menu lines */
-  .hamburger-button > span {
+  /* .hamburger-button > span {
     @apply block h-0.5 w-6 bg-general-40;
-  }
+  } */
 
   /* Hover state for hamburger menu lines */
-  button:hover .hamburger-button > span {
+  /* button:hover .hamburger-button > span {
     @apply bg-general-80;
-  }
+  } */
 
   /* Logo styles with hover effects */
   .logo {
