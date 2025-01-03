@@ -72,6 +72,22 @@ describe("threeService", () => {
       });
     });
 
+    describe("setBackgroundColor", () => {
+      test("should set background color of a scene", () => {
+        expect.assertions(2);
+
+        const scene = new Scene();
+        const backgroundColor = "#00ff00";
+
+        ThreeService.setBackgroundColor(scene, backgroundColor);
+
+        expect((scene.background as Color).getHexString()).toStrictEqual(
+          backgroundColor.replace("#", "")
+        );
+        expect(scene.children).toHaveLength(0);
+      });
+    });
+
     describe("addAmbientLight", () => {
       test("should add ambient light with custom parameters", () => {
         expect.assertions(3);
