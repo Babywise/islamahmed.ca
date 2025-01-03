@@ -1,6 +1,7 @@
 import {
   BoxGeometry,
   type Color,
+  Group,
   Mesh,
   type MeshStandardMaterial,
   Scene,
@@ -9,14 +10,146 @@ import {
 
 import ThreeService from "./ThreeService";
 
-vi.mock("three-stdlib", () => ({
-  FBXLoader: vi.fn(),
-  GLTFLoader: vi.fn(),
-  OBJLoader: vi.fn()
-}));
+vi.mock("three-stdlib", () => {
+  /**
+   * Creates a mock group with a single mesh.
+   */
+  const createMockGroup = () => {
+    const mockGroup = new Group();
+    const mockMesh = new Mesh(new BoxGeometry(1, 1, 1));
+    mockGroup.add(mockMesh);
+    return mockGroup;
+  };
+
+  const mockLoader = vi.fn().mockReturnValue({
+    load: vi
+      .fn()
+      .mockImplementation(
+        (
+          path: string,
+          onLoad: (group: Group | { scene: Group }) => void,
+          onProgress?: (event: ProgressEvent) => void,
+          onError?: (error: ErrorEvent) => void
+        ) => {
+          if (path.endsWith(".txt")) {
+            onError?.(
+              new ErrorEvent("error", { message: "Unsupported file type" })
+            );
+            return;
+          }
+
+          if (onProgress) {
+            const progressEvent = new ProgressEvent("progress", {
+              lengthComputable: true,
+              loaded: 50,
+              total: 100
+            });
+            onProgress(progressEvent);
+          }
+
+          if (path.endsWith(".gltf") || path.endsWith(".glb")) {
+            // GLTF files return an object with a scene property
+            onLoad({ scene: createMockGroup() });
+          } else {
+            // FBX and OBJ files return a Group directly
+            onLoad(createMockGroup());
+          }
+        }
+      )
+  });
+
+  return {
+    FBXLoader: mockLoader,
+    GLTFLoader: mockLoader,
+    OBJLoader: mockLoader
+  };
+});
 
 describe("threeService", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   describe("model", () => {
+    describe("loadModel", () => {
+      test("should load an fbx model successfully", async () => {
+        expect.assertions(3);
+
+        const model = await ThreeService.loadModel({ path: "test.fbx" });
+
+        expect(model).toBeInstanceOf(Group);
+        expect(model.children).toHaveLength(1);
+        expect(model.children[0]).toBeInstanceOf(Mesh);
+      });
+
+      test("should load a GLTF model and return its scene", async () => {
+        expect.assertions(3);
+
+        const model = await ThreeService.loadModel({ path: "test.gltf" });
+
+        expect(model).toBeInstanceOf(Group);
+        expect(model.children).toHaveLength(1);
+        expect(model.children[0]).toBeInstanceOf(Mesh);
+      });
+
+      test("should load a GLB model and return its scene", async () => {
+        expect.assertions(3);
+
+        const model = await ThreeService.loadModel({ path: "test.glb" });
+
+        expect(model).toBeInstanceOf(Group);
+        expect(model.children).toHaveLength(1);
+        expect(model.children[0]).toBeInstanceOf(Mesh);
+      });
+
+      test("should load an OBJ model successfully", async () => {
+        expect.assertions(3);
+
+        const model = await ThreeService.loadModel({ path: "test.obj" });
+
+        expect(model).toBeInstanceOf(Group);
+        expect(model.children).toHaveLength(1);
+        expect(model.children[0]).toBeInstanceOf(Mesh);
+      });
+
+      test("should throw an error for unsupported file type", async () => {
+        expect.assertions(1);
+
+        vi.spyOn(console, "error").mockImplementation(() => {});
+
+        await expect(
+          ThreeService.loadModel({ path: "test.txt" })
+        ).rejects.toBeInstanceOf(Error);
+      });
+
+      test("should handle progress callback", async () => {
+        expect.assertions(1);
+
+        const mockProgress = vi.fn();
+
+        await ThreeService.loadModel({
+          onProgress: mockProgress,
+          path: "test.fbx"
+        });
+
+        expect(mockProgress).toHaveBeenCalledWith(expect.any(ProgressEvent));
+      });
+
+      test("should handle error when loading model", async () => {
+        expect.assertions(2);
+
+        const mockError = vi.fn();
+
+        const modelPromise = ThreeService.loadModel({
+          onError: mockError,
+          path: "test.txt"
+        });
+
+        await expect(modelPromise).rejects.toBeInstanceOf(Error);
+        expect(mockError).toHaveBeenCalledWith(expect.any(ErrorEvent));
+      });
+    });
+
     describe("setColor", () => {
       test("should set color on a mesh", () => {
         expect.assertions(2);
