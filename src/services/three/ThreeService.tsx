@@ -1,12 +1,11 @@
-import type { ThreeEvent } from "@react-three/fiber";
-import { useThree } from "@react-three/fiber";
+import { type ThreeEvent, useThree } from "@react-three/fiber";
 import { useEffect } from "react";
-import type { Euler } from "three";
 import {
   AmbientLight,
   Box3,
   Color,
   DirectionalLight,
+  type Euler,
   Group,
   LoadingManager,
   Mesh,
@@ -147,12 +146,15 @@ const getLoader = (path: string) => {
  * @param {object} params Parameters for model loading.
  * @param {string} params.path The path to the model file.
  * @param {(xhr: ProgressEvent<EventTarget>) => void} [params.onProgress] Optional progress callback.
+ * @param {(event: ErrorEvent) => void} [params.onError] Optional error callback.
  * @returns {Promise<Group>} Promise resolving with the loaded model.
  */
 const loadModel = ({
+  onError,
   onProgress,
   path
 }: {
+  onError?: (event: ErrorEvent) => void;
   onProgress?: (xhr: ProgressEvent) => void;
   path: string;
 }): Promise<Group> => {
@@ -169,21 +171,14 @@ const loadModel = ({
           } else if ("scene" in object) {
             // Handle GLTFLoader (GLTF object with a scene property)
             resolve(object.scene);
-          } else {
-            reject(
-              new Error("Unsupported object type returned by the loader.")
-            );
           }
         },
         onProgress,
-        error => {
-          console.error("Error loading model:", error);
-          reject(new Error(error.message));
-        }
+        onError
       );
     } catch (err: unknown) {
       if (err instanceof Error) {
-        console.error(err.message);
+        onError?.(new ErrorEvent("error", { message: err.message }));
         reject(err);
       }
     }
@@ -486,6 +481,7 @@ const ThreeService = {
   calculateDimensions,
   createCamera,
   createScene,
+  getLoader,
   loadModel,
   Model,
   ModelInteractionComponent,
