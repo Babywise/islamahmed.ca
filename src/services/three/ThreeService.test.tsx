@@ -1,9 +1,12 @@
 import {
   BoxGeometry,
   type Color,
+  Euler,
   Group,
   Mesh,
   type MeshStandardMaterial,
+  OrthographicCamera,
+  PerspectiveCamera,
   Scene,
   Vector3
 } from "three";
@@ -261,6 +264,104 @@ describe("threeService", () => {
         expect(light.intensity).toStrictEqual(intensity);
         expect(light.position).toStrictEqual(position);
         expect(scene.children).toContain(light);
+      });
+    });
+  });
+
+  describe("camera", () => {
+    describe("createCamera", () => {
+      test("should create perspective camera with custom parameters", () => {
+        expect.assertions(5);
+
+        const camera = ThreeService.createCamera(75, 1.5, 0.1, 1000);
+
+        expect(camera).toBeInstanceOf(PerspectiveCamera);
+        expect((camera as PerspectiveCamera).fov).toBe(75);
+        expect((camera as PerspectiveCamera).aspect).toBe(1.5);
+        expect((camera as PerspectiveCamera).near).toBe(0.1);
+        expect((camera as PerspectiveCamera).far).toBe(1000);
+      });
+
+      test("should create orthographic camera with custom parameters", () => {
+        expect.assertions(7);
+
+        const camera = ThreeService.createCamera(75, 1.5, 0.1, 1000, true);
+
+        expect(camera).toBeInstanceOf(OrthographicCamera);
+        expect((camera as OrthographicCamera).left).toBe(-1.5);
+        expect((camera as OrthographicCamera).right).toBe(1.5);
+        expect((camera as OrthographicCamera).top).toBe(1);
+        expect((camera as OrthographicCamera).bottom).toBe(-1);
+        expect((camera as OrthographicCamera).near).toBe(0.1);
+        expect((camera as OrthographicCamera).far).toBe(1000);
+      });
+    });
+
+    describe("setCameraPosition", () => {
+      test("should set camera position", () => {
+        expect.assertions(3);
+
+        const camera = ThreeService.createCamera(75, 1.5, 0.1, 1000);
+        const position = new Vector3(1, 2, 3);
+
+        ThreeService.setCameraPosition(camera, position);
+
+        expect(camera.position.x).toBe(1);
+        expect(camera.position.y).toBe(2);
+        expect(camera.position.z).toBe(3);
+      });
+    });
+
+    describe("setCameraRotation", () => {
+      test("should set camera rotation", () => {
+        expect.assertions(3);
+
+        const camera = ThreeService.createCamera(75, 1.5, 0.1, 1000);
+        const rotation = new Euler(0, Math.PI / 2, 0);
+
+        ThreeService.setCameraRotation(camera, rotation);
+
+        expect(camera.rotation.x).toBe(0);
+        expect(camera.rotation.y).toBe(Math.PI / 2);
+        expect(camera.rotation.z).toBe(0);
+      });
+    });
+
+    describe("setLookAt", () => {
+      test("should set camera look at target", () => {
+        expect.assertions(3);
+
+        const camera = ThreeService.createCamera(75, 1.5, 0.1, 1000);
+        const target = new Vector3(1, 1, 1); // Look diagonally
+
+        // Position camera at origin looking at negative Z (default)
+        camera.position.set(0, 0, 0);
+        camera.rotation.set(0, 0, 0);
+        camera.updateMatrixWorld();
+
+        ThreeService.setLookAt(camera, target);
+
+        // Get normalized direction vector
+        const direction = camera.getWorldDirection(new Vector3());
+        const expectedDirection = target.clone().normalize();
+
+        // Compare components individually with rounding
+        expect(direction.x.toFixed(6)).toBe(expectedDirection.x.toFixed(6));
+        expect(direction.y.toFixed(6)).toBe(expectedDirection.y.toFixed(6));
+        expect(direction.z.toFixed(6)).toBe(expectedDirection.z.toFixed(6));
+      });
+    });
+
+    describe("setCameraFov", () => {
+      test("should set camera fov", () => {
+        expect.assertions(1);
+
+        const camera = ThreeService.createCamera(75, 1.5, 0.1, 1000);
+        const fov = 60;
+
+        ThreeService.setCameraFov(camera, fov);
+
+        expect((camera as PerspectiveCamera).fov).toStrictEqual(60);
       });
     });
   });
