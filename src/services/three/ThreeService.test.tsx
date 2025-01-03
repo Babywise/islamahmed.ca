@@ -1,3 +1,6 @@
+import { Canvas } from "@react-three/fiber";
+import { render } from "@testing-library/react";
+import type { ReactNode } from "react";
 import {
   BoxGeometry,
   type Color,
@@ -68,12 +71,114 @@ vi.mock("three-stdlib", () => {
   };
 });
 
+vi.mock("@react-three/fiber", async () => {
+  const actual = await vi.importActual("@react-three/fiber");
+  return {
+    ...actual,
+
+    /**
+     * Wraps the given React node in a Canvas provider for testing.
+     * @param ReactNode The React node to wrap.
+     * @param ReactNode.children The children to wrap.
+     */
+    Canvas: ({ children }: { children: ReactNode }) => <div>{children}</div>,
+
+    /**
+     * Mock useThree hook.
+     */
+    useThree: () => {
+      const div = document.createElement("div");
+      div.id = "model";
+
+      return {
+        scene: {
+          /**
+           * Adds the model to the scene as a child div.
+           */
+          add: () => {
+            document.querySelector("div")?.appendChild(div);
+          },
+
+          /**
+           * Removes the model from the scene.
+           */
+          remove: () => {
+            document.getElementById("model")?.remove();
+          }
+        }
+      };
+    }
+  };
+});
+
 describe("threeService", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   describe("model", () => {
+    describe("render", () => {
+      test("should add model to scene", async () => {
+        expect.assertions(1);
+
+        const model = await ThreeService.loadModel({ path: "test.fbx" });
+
+        const { container } = render(
+          <Canvas>
+            <ThreeService.Model model={model} />
+          </Canvas>
+        );
+
+        // Check if model div is added
+        expect(container.querySelector("#model")).toBeInTheDocument();
+      });
+
+      test("should remove model from scene", async () => {
+        expect.assertions(1);
+
+        const model = await ThreeService.loadModel({ path: "test.fbx" });
+
+        const { container, unmount } = render(
+          <Canvas>
+            <ThreeService.Model model={model} />
+          </Canvas>
+        );
+
+        // Unmount should remove the model
+        unmount();
+
+        expect(container.querySelector("#model")).not.toBeInTheDocument();
+      });
+
+      test("should return null if no model is provided", () => {
+        expect.assertions(1);
+
+        const { container } = render(
+          <Canvas>
+            <ThreeService.Model model={null} />
+          </Canvas>
+        );
+
+        expect(container.querySelector("#model")).not.toBeInTheDocument();
+      });
+    });
+
+    describe("modelInteractionComponent", () => {
+      test("should render successfully", async () => {
+        expect.assertions(1);
+
+        const model = await ThreeService.loadModel({ path: "test.fbx" });
+
+        const { container } = render(
+          <Canvas>
+            <ThreeService.ModelInteractionComponent models={[model]} />
+          </Canvas>
+        );
+
+        expect(container).toBeInTheDocument();
+      });
+    });
+
     describe("loadModel", () => {
       test("should load an fbx model successfully", async () => {
         expect.assertions(3);
@@ -150,6 +255,60 @@ describe("threeService", () => {
 
         await expect(modelPromise).rejects.toBeInstanceOf(Error);
         expect(mockError).toHaveBeenCalledWith(expect.any(ErrorEvent));
+      });
+    });
+
+    describe("setPosition", () => {
+      test("should set position on a model", () => {
+        expect.assertions(3);
+
+        const group = new Group();
+        const mesh = new Mesh();
+        group.add(mesh);
+        const position = new Vector3(1, 2, 3);
+
+        ThreeService.setPosition(group, position);
+
+        // Compare individual components and order instead of the whole object
+        expect(group.position.x).toStrictEqual(position.x);
+        expect(group.position.y).toStrictEqual(position.y);
+        expect(group.position.z).toStrictEqual(position.z);
+      });
+    });
+
+    describe("setRotation", () => {
+      test("should set rotation on a model", () => {
+        expect.assertions(3);
+
+        const group = new Group();
+        const mesh = new Mesh();
+        group.add(mesh);
+        const rotation = new Euler(1, 2, 3);
+
+        ThreeService.setRotation(group, rotation);
+
+        // Compare individual components and order instead of the whole object
+        expect(group.rotation.x).toStrictEqual(rotation.x);
+        expect(group.rotation.y).toStrictEqual(rotation.y);
+        expect(group.rotation.z).toStrictEqual(rotation.z);
+      });
+    });
+
+    describe("setScale", () => {
+      test("should set scale on a model", () => {
+        expect.assertions(3);
+
+        const group = new Group();
+        const mesh = new Mesh();
+        group.add(mesh);
+        const scale = new Vector3(1, 2, 3);
+
+        ThreeService.setScale(group, scale);
+
+        // Compare individual components and order instead of the whole object
+        expect(group.scale.x).toStrictEqual(scale.x);
+        expect(group.scale.y).toStrictEqual(scale.y);
+        expect(group.scale.z).toStrictEqual(scale.z);
       });
     });
 
