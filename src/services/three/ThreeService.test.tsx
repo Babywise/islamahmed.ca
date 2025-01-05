@@ -177,6 +177,23 @@ describe("threeService", () => {
 
         expect(container).toBeInTheDocument();
       });
+
+      test("should return null if no models are provided", () => {
+        expect.assertions(1);
+
+        const { container } = render(
+          <Canvas>
+            <ThreeService.ModelInteractionComponent models={[]} />
+          </Canvas>
+        );
+        const children = container.firstElementChild?.children;
+
+        expect(children?.length).toBe(0);
+      });
+
+      test.todo("should update hover state on mouse enter");
+
+      test.todo("should update hover state on mouse leave");
     });
 
     describe("loadModel", () => {
