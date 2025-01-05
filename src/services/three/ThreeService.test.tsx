@@ -7,7 +7,7 @@ import {
   Euler,
   Group,
   Mesh,
-  type MeshStandardMaterial,
+  MeshStandardMaterial,
   OrthographicCamera,
   PerspectiveCamera,
   Scene,
@@ -177,6 +177,23 @@ describe("threeService", () => {
 
         expect(container).toBeInTheDocument();
       });
+
+      test("should return null if no models are provided", () => {
+        expect.assertions(1);
+
+        const { container } = render(
+          <Canvas>
+            <ThreeService.ModelInteractionComponent models={[]} />
+          </Canvas>
+        );
+        const children = container.firstElementChild?.children;
+
+        expect(children?.length).toBe(0);
+      });
+
+      test.todo("should update hover state on mouse enter");
+
+      test.todo("should update hover state on mouse leave");
     });
 
     describe("loadModel", () => {
@@ -325,6 +342,77 @@ describe("threeService", () => {
 
         expect(material).toBeDefined();
         expect(material.color.getHexString()).toStrictEqual(
+          color.replace("#", "")
+        );
+      });
+
+      test("should set color on a group", () => {
+        expect.assertions(2);
+
+        const group = new Group();
+        const mesh = new Mesh();
+        mesh.material = new MeshStandardMaterial();
+        group.add(mesh);
+        const color = "#00ff00";
+
+        ThreeService.setColor(group, color);
+
+        const firstChild = group.children[0] as Mesh;
+        const material = firstChild.material as MeshStandardMaterial;
+
+        expect(material).toBeDefined();
+        expect(material.color.getHexString()).toStrictEqual(
+          color.replace("#", "")
+        );
+      });
+
+      test("should set color on an array of meshes", () => {
+        expect.assertions(4);
+
+        const group = new Group();
+        const mesh1 = new Mesh();
+        const mesh2 = new Mesh();
+        group.add(mesh1, mesh2);
+        const color = "#00ff00";
+
+        ThreeService.setColor(group, color);
+
+        const firstChild = group.children[0] as Mesh;
+        const material1 = firstChild.material as MeshStandardMaterial;
+        const secondChild = group.children[1] as Mesh;
+        const material2 = secondChild.material as MeshStandardMaterial;
+
+        expect(material1).toBeDefined();
+        expect(material1.color.getHexString()).toStrictEqual(
+          color.replace("#", "")
+        );
+        expect(material2).toBeDefined();
+        expect(material2.color.getHexString()).toStrictEqual(
+          color.replace("#", "")
+        );
+      });
+
+      test("should set color on a mesh with multiple materials", () => {
+        expect.assertions(3);
+
+        const group = new Group();
+        const mesh = new Mesh();
+        const material1 = new MeshStandardMaterial();
+        const material2 = new MeshStandardMaterial();
+        mesh.material = [material1, material2];
+        group.add(mesh);
+        const color = "#00ff00";
+
+        ThreeService.setColor(group, color);
+
+        const firstChild = group.children[0] as Mesh;
+        const materials = firstChild.material as MeshStandardMaterial[];
+
+        expect(materials).toHaveLength(2);
+        expect(materials[0].color.getHexString()).toStrictEqual(
+          color.replace("#", "")
+        );
+        expect(materials[1].color.getHexString()).toStrictEqual(
           color.replace("#", "")
         );
       });
