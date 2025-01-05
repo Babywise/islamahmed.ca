@@ -433,6 +433,10 @@ const ModelInteractionComponent = ({
     onHoverChange?.(null);
   };
 
+  if (!models || models.length === 0) {
+    return null;
+  }
+
   return (
     <group>
       {models.map(
