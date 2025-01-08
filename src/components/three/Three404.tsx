@@ -112,7 +112,7 @@ function Three404({ className }: Three404Props) {
       aria-hidden="true"
       className={className}
       gl={{ antialias: true }}
-      id="canvas">
+      id="three404-canvas">
       <Suspense fallback={null}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[0, 0, 1]} />
