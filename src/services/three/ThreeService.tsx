@@ -490,6 +490,7 @@ const ThreeService = {
   Model,
   ModelInteractionComponent,
   rotateAround,
+  RotationAxis,
   setBackgroundColor,
   setCameraFov,
   setCameraPosition,
