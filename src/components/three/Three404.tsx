@@ -26,6 +26,7 @@ function Three404({ className }: Three404Props) {
   const [hoveredModel, setHoveredModel] = useState<Group | Mesh | null>(null);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const angleRef = useRef<number>(0);
+  const isDragging = useRef(false);
 
   // Constants
   const scale = new Vector3(0.0075, 0.0075, 0.0075);
@@ -177,8 +178,13 @@ function Three404({ className }: Three404Props) {
       className={className}
       gl={{ antialias: true }}
       id="three404-canvas"
-      onClick={() => {
-        setIsAnimating(prev => !prev);
+      onMouseDown={() => (isDragging.current = false)}
+      onMouseMove={() => (isDragging.current = true)}
+      onMouseUp={() => {
+        if (!isDragging.current) {
+          // Only toggle animation if it was a click (no dragging)
+          setIsAnimating(prev => !prev);
+        }
       }}>
       <Suspense fallback={null}>
         <ambientLight intensity={0.5} />
