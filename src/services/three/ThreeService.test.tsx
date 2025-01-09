@@ -418,6 +418,190 @@ describe("threeService", () => {
       });
     });
 
+    describe("rotateAround", () => {
+      test("should rotate a mesh around X axis", () => {
+        expect.assertions(3);
+
+        const mesh = new Mesh();
+        const pivot = new Vector3(1, 2, 3);
+        const radius = 5;
+        const angle = Math.PI / 2; // 90 degrees
+        const axes = [ThreeService.RotationAxis.X];
+
+        ThreeService.rotateAround(mesh, pivot, radius, angle, axes);
+
+        // At 90 degrees rotation around X axis:
+        // x = pivot.x (X rotation doesn't affect X coordinate)
+        // y = pivot.y + radius * cos(90°) = pivot.y + radius * 0 = pivot.y
+        // z = pivot.z + radius * sin(90°) = pivot.z + radius * 1 = pivot.z + radius
+        expect(mesh.position.x).toBeCloseTo(pivot.x);
+        expect(mesh.position.y).toBeCloseTo(pivot.y + radius * Math.cos(angle));
+        expect(mesh.position.z).toBeCloseTo(pivot.z + radius * Math.sin(angle));
+      });
+
+      test("should rotate a mesh around Y axis", () => {
+        expect.assertions(3);
+
+        const mesh = new Mesh();
+        const pivot = new Vector3(1, 2, 3);
+        const radius = 5;
+        const angle = Math.PI / 2; // 90 degrees
+        const axes = [ThreeService.RotationAxis.Y];
+
+        ThreeService.rotateAround(mesh, pivot, radius, angle, axes);
+
+        // At 90 degrees rotation around Y axis:
+        // x = pivot.x + radius * cos(90°) = pivot.x + radius * 0 = pivot.x
+        // y = pivot.y (Y rotation doesn't affect Y coordinate)
+        // z = pivot.z + radius * sin(90°) = pivot.z + radius * 1 = pivot.z + radius
+        expect(mesh.position.x).toBeCloseTo(pivot.x + radius * Math.cos(angle));
+        expect(mesh.position.y).toBeCloseTo(pivot.y);
+        expect(mesh.position.z).toBeCloseTo(pivot.z + radius * Math.sin(angle));
+      });
+
+      test("should rotate a mesh around Z axis", () => {
+        expect.assertions(3);
+
+        const mesh = new Mesh();
+        const pivot = new Vector3(1, 2, 3);
+        const radius = 5;
+        const angle = Math.PI / 2; // 90 degrees
+        const axes = [ThreeService.RotationAxis.Z];
+
+        ThreeService.rotateAround(mesh, pivot, radius, angle, axes);
+
+        // At 90 degrees rotation around Z axis:
+        // x = pivot.x + radius * cos(90°) = pivot.x + radius * 0 = pivot.x
+        // y = pivot.y + radius * sin(90°) = pivot.y + radius * 1 = pivot.y + radius
+        // z = pivot.z (Z rotation doesn't affect Z coordinate)
+        expect(mesh.position.x).toBeCloseTo(pivot.x + radius * Math.cos(angle));
+        expect(mesh.position.y).toBeCloseTo(pivot.y + radius * Math.sin(angle));
+        expect(mesh.position.z).toBeCloseTo(pivot.z);
+      });
+
+      test("should rotate a mesh around X and Y axes", () => {
+        expect.assertions(3);
+
+        const mesh = new Mesh();
+        const pivot = new Vector3(0, 0, 0);
+        const radius = 5;
+        const angle = Math.PI / 4; // 45 degrees
+        const axes = [ThreeService.RotationAxis.X, ThreeService.RotationAxis.Y];
+
+        ThreeService.rotateAround(mesh, pivot, radius, angle, axes);
+
+        // For X and Y rotation combined:
+        // Both X and Y contribute to the rotation, resulting in a combined movement
+        expect(mesh.position.x).toBeCloseTo(radius * Math.cos(angle));
+        expect(mesh.position.y).toBeCloseTo(radius * Math.cos(angle));
+        expect(mesh.position.z).toBeCloseTo(radius * Math.sin(angle));
+      });
+
+      test("should rotate a mesh around X and Z axes", () => {
+        expect.assertions(3);
+
+        const mesh = new Mesh();
+        const pivot = new Vector3(0, 0, 0);
+        const radius = 5;
+        const angle = Math.PI / 4; // 45 degrees
+        const axes = [ThreeService.RotationAxis.X, ThreeService.RotationAxis.Z];
+
+        ThreeService.rotateAround(mesh, pivot, radius, angle, axes);
+
+        // For X and Z rotation combined:
+        // Both X and Z contribute to the rotation, resulting in a combined movement
+        expect(mesh.position.x).toBeCloseTo(radius * Math.cos(angle));
+        expect(mesh.position.y).toBeCloseTo(radius * Math.sin(angle));
+        expect(mesh.position.z).toBeCloseTo(radius * Math.cos(angle));
+      });
+
+      test("should rotate a mesh around Y and Z axes", () => {
+        expect.assertions(3);
+
+        const mesh = new Mesh();
+        const pivot = new Vector3(0, 0, 0);
+        const radius = 5;
+        const angle = Math.PI / 4; // 45 degrees
+        const axes = [ThreeService.RotationAxis.Y, ThreeService.RotationAxis.Z];
+
+        ThreeService.rotateAround(mesh, pivot, radius, angle, axes);
+
+        // For Y and Z rotation combined:
+        // Both Y and Z contribute to the rotation, resulting in a combined movement
+        expect(mesh.position.x).toBeCloseTo(radius * Math.sin(angle));
+        expect(mesh.position.y).toBeCloseTo(radius * Math.cos(angle));
+        expect(mesh.position.z).toBeCloseTo(radius * Math.cos(angle));
+      });
+
+      test("should rotate a mesh around all three axes", () => {
+        expect.assertions(3);
+
+        const mesh = new Mesh();
+        const pivot = new Vector3(0, 0, 0);
+        const radius = 5;
+        const angle = Math.PI / 4; // 45 degrees
+        const axes = [
+          ThreeService.RotationAxis.X,
+          ThreeService.RotationAxis.Y,
+          ThreeService.RotationAxis.Z
+        ];
+
+        ThreeService.rotateAround(mesh, pivot, radius, angle, axes);
+
+        // For all three axes combined:
+        // Each axis contributes to the rotation equally
+        expect(mesh.position.x).toBeCloseTo(radius * Math.cos(angle));
+        expect(mesh.position.y).toBeCloseTo(radius * Math.cos(angle));
+        expect(mesh.position.z).toBeCloseTo(radius * Math.sin(angle));
+      });
+
+      test("should rotate a group around all three axes", () => {
+        expect.assertions(3);
+
+        const group = new Group();
+        const pivot = new Vector3(0, 0, 0);
+        const radius = 5;
+        const angle = Math.PI / 4; // 45 degrees
+        const axes = [
+          ThreeService.RotationAxis.X,
+          ThreeService.RotationAxis.Y,
+          ThreeService.RotationAxis.Z
+        ];
+
+        ThreeService.rotateAround(group, pivot, radius, angle, axes);
+
+        // For all three axes combined:
+        // Each axis contributes to the rotation equally
+        expect(group.position.x).toBeCloseTo(radius * Math.cos(angle));
+        expect(group.position.y).toBeCloseTo(radius * Math.cos(angle));
+        expect(group.position.z).toBeCloseTo(radius * Math.sin(angle));
+      });
+
+      test("should handle lookAtTarget", () => {
+        expect.assertions(1);
+
+        const mesh = new Mesh();
+        const pivot = new Vector3(0, 0, 0);
+        const radius = 5;
+        const angle = 0;
+        const axes = [ThreeService.RotationAxis.Y];
+        const lookAtTarget = new Vector3(10, 10, 10);
+
+        const lookAtSpy = vi.spyOn(mesh, "lookAt");
+
+        ThreeService.rotateAround(
+          mesh,
+          pivot,
+          radius,
+          angle,
+          axes,
+          lookAtTarget
+        );
+
+        expect(lookAtSpy).toHaveBeenCalledWith(lookAtTarget);
+      });
+    });
+
     describe("calculateDimensions", () => {
       test("should calculate dimensions of a mesh", () => {
         expect.assertions(4);
