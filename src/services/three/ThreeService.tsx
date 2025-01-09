@@ -264,7 +264,7 @@ enum RotationAxis {
 
 /**
  * Rotates a model around a specified pivot point on one or more axes.
- * @param {Group} model The model to rotate.
+ * @param {Group | Mesh} model The model to rotate.
  * @param {Vector3} pivot The pivot point around which to rotate the model.
  * @param {number} radius The distance from the pivot to the model.
  * @param {number} angle The angle of rotation.
@@ -272,7 +272,7 @@ enum RotationAxis {
  * @param {Vector3} [lookAtTarget] Optional parameter for the model to look at a specific target.
  */
 const rotateAround = (
-  model: Group,
+  model: Group | Mesh,
   pivot: Vector3,
   radius: number,
   angle: number,
@@ -301,7 +301,7 @@ const rotateAround = (
   } else if (axes.includes(RotationAxis.X) && axes.includes(RotationAxis.Y)) {
     // Rotation around X and Y axes
     newX += radius * cosAngle;
-    newY += radius * cosAngle;
+    newY += radius * sinAngle;
     newZ += radius * sinAngle;
   } else if (axes.includes(RotationAxis.X) && axes.includes(RotationAxis.Z)) {
     // Rotation around X and Z axes
@@ -316,14 +316,17 @@ const rotateAround = (
   } else {
     // Single axis rotations
     if (axes.includes(RotationAxis.X)) {
+      // X-axis rotation affects Y and Z
       newY += radius * cosAngle;
       newZ += radius * sinAngle;
     }
     if (axes.includes(RotationAxis.Y)) {
+      // Y-axis rotation affects X and Z
       newX += radius * cosAngle;
       newZ += radius * sinAngle;
     }
     if (axes.includes(RotationAxis.Z)) {
+      // Z-axis rotation affects X and Y
       newX += radius * cosAngle;
       newY += radius * sinAngle;
     }
@@ -490,6 +493,7 @@ const ThreeService = {
   Model,
   ModelInteractionComponent,
   rotateAround,
+  RotationAxis,
   setBackgroundColor,
   setCameraFov,
   setCameraPosition,
