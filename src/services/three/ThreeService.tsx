@@ -386,9 +386,7 @@ const addDirectionalLight = (
  * @returns {object} An object with size and center properties.
  */
 const calculateDimensions = (object: Group | Mesh) => {
-  const box = new Box3();
-
-  box.setFromObject(object);
+  const box = new Box3().setFromObject(object);
 
   return {
     center: box.getCenter(new Vector3()),
@@ -398,6 +396,7 @@ const calculateDimensions = (object: Group | Mesh) => {
 
 interface ModelInteractionProps {
   models: Array<Group | Mesh | null>;
+  onClick?: (model: Group | Mesh) => void;
   onHoverChange?: (model: Group | Mesh | null) => void;
 }
 
@@ -406,9 +405,11 @@ interface ModelInteractionProps {
  * @param ModelInteractionProps The component props object.
  * @param ModelInteractionProps.models An array of loaded models.
  * @param ModelInteractionProps.onHoverChange An optional callback to update the hovered model.
+ * @param ModelInteractionProps.onClick An optional callback when a model is clicked.
  */
 const ModelInteractionComponent = ({
   models,
+  onClick,
   onHoverChange
 }: ModelInteractionProps) => {
   /**
@@ -436,6 +437,22 @@ const ModelInteractionComponent = ({
     onHoverChange?.(null);
   };
 
+  /**
+   * Handles click events on models.
+   * @param {ThreeEvent<MouseEvent>} event The click event from React Three Fiber.
+   */
+  const handleClick = (event: ThreeEvent<MouseEvent>) => {
+    if (!onClick || event.intersections.length === 0) return;
+
+    const [firstIntersect] = event.intersections;
+    if (
+      firstIntersect.object instanceof Mesh ||
+      firstIntersect.object instanceof Group
+    ) {
+      onClick(firstIntersect.object);
+    }
+  };
+
   if (!models || models.length === 0) {
     return null;
   }
@@ -448,6 +465,7 @@ const ModelInteractionComponent = ({
             <primitive
               key={model.uuid}
               object={model}
+              onClick={handleClick}
               onPointerMove={handlePointerMove}
               onPointerOut={handlePointerOut}
             />
