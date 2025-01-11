@@ -20,18 +20,43 @@ interface Three404Props {
  * @param Three404Props.className The class name for the component.
  */
 function Three404({ className }: Three404Props) {
+  // States
   const [firstFourModel, setFirstFourModel] = useState<Group | null>(null);
   const [secondFourModel, setSecondFourModel] = useState<Group | null>(null);
   const [zeroModel, setZeroModel] = useState<Group | null>(null);
   const [hoveredModel, setHoveredModel] = useState<Group | Mesh | null>(null);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const [spinningModels, setSpinningModels] = useState<Set<Group | Mesh>>(
+    new Set()
+  );
+
+  // Refs
   const angleRef = useRef<number>(0);
+  const spinAnglesRef = useRef<Map<Group | Mesh, number>>(new Map());
   const isDragging = useRef(false);
 
   // Constants
   const scale = new Vector3(0.0075, 0.0075, 0.0075);
   const originOffsetX = 1.75;
   const originOffsetY = -0.8;
+
+  /**
+   * Handles click events on models to toggle their spin state.
+   * @param model The model that was clicked.
+   */
+  const handleModelClick = (model: Group | Mesh) => {
+    if (!isDragging.current) {
+      setSpinningModels(prev => {
+        const newSet = new Set(prev);
+        if (newSet.has(model)) {
+          newSet.delete(model);
+        } else {
+          newSet.add(model);
+        }
+        return newSet;
+      });
+    }
+  };
 
   // Load models
   useEffect(() => {
@@ -130,6 +155,7 @@ function Three404({ className }: Three404Props) {
 
     /**
      * Animates the models in a circular motion around the zero.
+     * Also handles individual model spinning.
      * Uses time-based animation for smooth movement across different refresh rates.
      * @param currentTime The current time in milliseconds.
      */
@@ -157,6 +183,17 @@ function Three404({ className }: Three404Props) {
         angleRef.current + Math.PI, // Offset by PI to place it opposite to first 4
         [ThreeService.RotationAxis.Y]
       );
+
+      // Handle individual model spins
+      spinningModels.forEach(model => {
+        if (!spinAnglesRef.current.has(model)) {
+          spinAnglesRef.current.set(model, 0);
+        }
+        const currentAngle = spinAnglesRef.current.get(model)!;
+        const newAngle = currentAngle + 2 * Math.PI * deltaTime; // One full rotation per second
+        spinAnglesRef.current.set(model, newAngle);
+        model.rotation.y = newAngle;
+      });
 
       // Request next animation frame
       animationFrameId = requestAnimationFrame(animate);
@@ -210,6 +247,7 @@ function Three404({ className }: Three404Props) {
         <ThreeService.Model model={secondFourModel} />
         <ThreeService.ModelInteractionComponent
           models={[firstFourModel, secondFourModel, zeroModel]}
+          onClick={handleModelClick}
           onHoverChange={setHoveredModel}
         />
       </Suspense>
