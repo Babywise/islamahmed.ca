@@ -3,6 +3,6 @@
 
 @layer components {
   #three404-canvas {
-    @apply aspect-video max-h-52 max-w-[50%];
+    @apply aspect-video max-h-52 max-w-full sm:max-w-[50%];
   }
 }
