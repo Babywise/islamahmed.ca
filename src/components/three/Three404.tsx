@@ -36,7 +36,7 @@ function Three404({ className }: Three404Props) {
   const isDragging = useRef(false);
 
   // Constants
-  const scale = new Vector3(0.0075, 0.0075, 0.0075);
+  const scale = new Vector3(0.007, 0.007, 0.007);
   const originOffsetX = 1.75;
   const originOffsetY = -0.8;
 
