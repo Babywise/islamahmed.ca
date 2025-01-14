@@ -12,8 +12,10 @@ function Home() {
       <section id="hero">
         <div className="hero-content" role="none">
           <h1>
-            Hello, I&apos;m <span>Islam</span>.<br />
-            I&apos;m a full stack web developer.
+            <span>Islam Ahmed</span>, <br />
+            Full-stack developer
+            <br />
+            driven by security and UX design.
           </h1>
           <button
             onClick={() => {
