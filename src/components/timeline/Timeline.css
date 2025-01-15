@@ -1,0 +1,96 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* Timeline Container */
+  .timeline-container {
+    @apply relative w-full;
+    @apply after:absolute after:left-[30px] after:top-0 after:h-full after:w-0.5 after:bg-red-500;
+    @apply sm:after:left-1/2 sm:after:-translate-x-1/2;
+  }
+
+  /* Timeline Items */
+  .timeline-item {
+    @apply relative mb-10 w-full pl-[60px] pr-0;
+    @apply sm:w-1/2 sm:pl-0 sm:pr-[50px];
+
+    @apply before:absolute before:left-[25px] before:top-1/2 before:h-0.5 before:w-[35px] before:-translate-y-1/2 before:bg-red-500;
+    @apply sm:before:left-auto sm:before:right-0 sm:before:w-[50px];
+
+    @apply after:z-10;
+    @apply after:border-general-40 after:bg-general-80;
+    @apply after:rounded-full after:border-2;
+    @apply after:absolute after:left-[25px] after:top-1/2 after:size-[1rem] after:-translate-y-1/2;
+    @apply sm:after:-right-[8px] sm:after:left-auto;
+  }
+
+  .timeline-item:nth-child(even) {
+    @apply ml-0;
+    @apply sm:ml-[50%] sm:pl-[50px] sm:pr-0;
+
+    @apply before:left-[25px];
+    @apply sm:before:left-0 sm:before:right-auto;
+
+    @apply after:left-[25px];
+    @apply sm:after:-left-[8px] sm:after:right-auto;
+  }
+
+  /* Timeline Cards */
+  .timeline-card {
+    @apply relative rounded-lg bg-general-100/50 p-6;
+  }
+
+  /* Year Section */
+  .year-section {
+    @apply mb-5 flex items-center gap-2;
+  }
+
+  .year {
+    @apply text-[2.5rem] font-bold leading-none text-general-40;
+  }
+
+  .duration {
+    @apply text-general-40/75;
+  }
+
+  /* Card Content */
+  .timeline-card h3 {
+    @apply mb-3 text-4xl font-bold text-general-10;
+    @apply text-general-10;
+  }
+
+  .organization {
+    @apply mb-5;
+    @apply text-general-60;
+  }
+
+  .timeline-card p {
+    @apply mb-5 leading-normal;
+    @apply text-general-40;
+  }
+
+  /* Bullet Points */
+  .bullet-points {
+    @apply mb-5 rounded-lg px-12 py-5;
+    @apply bg-general-40/20;
+  }
+
+  .bullet-points li {
+    @apply relative list-none py-2 leading-normal;
+    @apply text-general-40;
+
+    @apply before:absolute before:left-[-20px] before:top-1/2 before:-translate-y-1/2 before:rounded-full;
+    @apply before:h-1.5 before:w-1.5 before:rounded-full;
+    @apply before:bg-red-500;
+  }
+
+  /* Tags */
+  .tags {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .tag {
+    @apply rounded-full px-4 py-1.5 text-sm;
+    @apply bg-general-40/20 text-general-40;
+  }
+}

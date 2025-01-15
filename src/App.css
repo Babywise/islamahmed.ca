@@ -39,7 +39,6 @@
 
   /* Navigation list items with hover effects */
   li {
-    @apply flex items-center justify-center;
     @apply hover:font-bold hover:text-general-80 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.95)];
   }
 

@@ -65,6 +65,8 @@
   }
 
   .header-nav li {
+    /* Display and alignment */
+    @apply flex items-center justify-center;
     /* Sizing */
     @apply sm:py-0;
   }
