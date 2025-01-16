@@ -5,39 +5,48 @@
   /* Timeline Container */
   .timeline-container {
     @apply relative w-full;
-    @apply after:absolute after:left-[30px] after:top-0 after:h-full after:w-0.5 after:bg-red-500;
+
+    /* Vertical Line */
+    @apply after:absolute after:left-4 after:top-0;
+    @apply after:h-full after:w-0.5;
+    @apply after:bg-red-500;
     @apply sm:after:left-1/2 sm:after:-translate-x-1/2;
   }
 
   /* Timeline Items */
   .timeline-item {
-    @apply relative mb-10 w-full pl-[60px] pr-0;
+    @apply relative mb-10 w-full pl-16 pr-0;
     @apply sm:w-1/2 sm:pl-0 sm:pr-[50px];
 
-    @apply before:absolute before:left-[25px] before:top-1/2 before:h-0.5 before:w-[35px] before:-translate-y-1/2 before:bg-red-500;
+    /* Horizontal Line */
+    @apply before:absolute before:left-4 before:top-1/2 before:-translate-y-1/2;
+    @apply before:h-0.5 before:w-12;
+    @apply before:bg-red-500;
     @apply sm:before:left-auto sm:before:right-0 sm:before:w-[50px];
 
+    /* Dot */
     @apply after:z-10;
     @apply after:border-general-40 after:bg-general-80;
     @apply after:rounded-full after:border-2;
-    @apply after:absolute after:left-[25px] after:top-1/2 after:size-[1rem] after:-translate-y-1/2;
-    @apply sm:after:-right-[8px] sm:after:left-auto;
+    @apply after:absolute after:left-2 after:top-1/2 after:size-4 after:-translate-y-1/2;
+    @apply sm:after:-right-2 sm:after:left-auto;
   }
 
   .timeline-item:nth-child(even) {
     @apply ml-0;
     @apply sm:ml-[50%] sm:pl-[50px] sm:pr-0;
 
-    @apply before:left-[25px];
+    @apply before:left-4;
     @apply sm:before:left-0 sm:before:right-auto;
 
-    @apply after:left-[25px];
-    @apply sm:after:-left-[8px] sm:after:right-auto;
+    @apply after:left-2;
+    @apply sm:after:-left-2 sm:after:right-auto;
   }
 
   /* Timeline Cards */
   .timeline-card {
-    @apply relative rounded-lg bg-general-100/50 p-6;
+    @apply relative rounded-lg p-6;
+    @apply bg-general-100/50;
   }
 
   /* Year Section */
@@ -46,7 +55,15 @@
   }
 
   .year {
-    @apply text-[2.5rem] font-bold leading-none text-general-40;
+    @apply text-[2.5rem] font-bold leading-none drop-shadow-[0_0_7px_theme(colors.general.0)];
+  }
+
+  .year#year-2024 {
+    @apply text-cyan-500 drop-shadow-[0_0_7px_theme(colors.cyan.500)];
+  }
+
+  .year#year-2017 {
+    @apply text-purple-500 drop-shadow-[0_0_7px_theme(colors.purple.500)];
   }
 
   .duration {
@@ -55,12 +72,12 @@
 
   /* Card Content */
   .timeline-card h3 {
-    @apply mb-3 text-4xl font-bold text-general-10;
+    @apply mb-3 text-2xl font-bold text-general-10;
     @apply text-general-10;
   }
 
   .organization {
-    @apply mb-5;
+    @apply mb-5 leading-normal;
     @apply text-general-60;
   }
 
@@ -79,7 +96,7 @@
     @apply relative list-none py-2 leading-normal;
     @apply text-general-40;
 
-    @apply before:absolute before:left-[-20px] before:top-1/2 before:-translate-y-1/2 before:rounded-full;
+    @apply before:absolute before:-left-6 before:top-1/2 before:-translate-y-1/2 before:rounded-full;
     @apply before:h-1.5 before:w-1.5 before:rounded-full;
     @apply before:bg-red-500;
   }
