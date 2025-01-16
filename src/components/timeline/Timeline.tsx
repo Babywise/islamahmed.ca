@@ -23,7 +23,9 @@ function Timeline({ items }: { items: TimelineItem[] }) {
         <div className="timeline-item" key={item.title}>
           <div className="timeline-card">
             <div className="year-section">
-              <span className="year">{item.year}</span>
+              <span className="year" id={`year-${item.year}`}>
+                {item.year}
+              </span>
               <span className="duration">{item.duration}</span>
             </div>
 
