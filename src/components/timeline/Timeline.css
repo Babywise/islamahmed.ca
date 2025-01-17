@@ -4,7 +4,7 @@
 @layer components {
   /* Timeline Container */
   .timeline-container {
-    @apply relative w-full;
+    @apply relative w-full text-xs;
 
     /* Vertical Line */
     @apply after:absolute after:left-4 after:top-0;
@@ -51,7 +51,7 @@
 
   /* Year Section */
   .year-section {
-    @apply mb-5 flex items-center gap-2;
+    @apply mb-3 flex items-center gap-2;
   }
 
   .year {
@@ -77,24 +77,25 @@
   }
 
   .organization {
-    @apply mb-5 leading-normal;
+    @apply mb-3 leading-tight;
     @apply text-general-60;
   }
 
   .timeline-card p {
-    @apply mb-5 leading-normal;
+    @apply mb-3 leading-tight;
     @apply text-general-40;
   }
 
   /* Bullet Points */
   .bullet-points {
-    @apply mb-5 rounded-lg px-12 py-5;
+    @apply mb-5 rounded-lg py-5 pl-10 pr-4;
     @apply bg-general-40/20;
   }
 
   .bullet-points li {
-    @apply relative list-none py-2 leading-normal;
+    @apply relative list-none py-2 leading-tight;
     @apply text-general-40;
+    @apply hover:text-general-80;
 
     @apply before:absolute before:-left-6 before:top-1/2 before:-translate-y-1/2 before:rounded-full;
     @apply before:h-1.5 before:w-1.5 before:rounded-full;
