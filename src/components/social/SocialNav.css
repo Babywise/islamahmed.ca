@@ -6,7 +6,7 @@
     /* Layout and positioning */
     @apply sticky top-0 z-50;
     /* Sizing */
-    @apply h-[56px];
+    @apply mx-auto h-[56px] w-fit;
     /* Spacing */
     @apply mb-4 p-[0px];
     /* Display and alignment */
