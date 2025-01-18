@@ -34,7 +34,7 @@
 
   /* Navigation list items with hover effects */
   li {
-    @apply hover:font-bold hover:text-general-80 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.95)];
+    @apply font-bold hover:text-general-80 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.95)];
   }
 
   /* Navigation list background */
@@ -71,21 +71,6 @@
  * These styles define reusable UI patterns and components
  */
 @layer components {
-  /* Hamburger menu button styles */
-  /* .hamburger-button {
-    @apply space-y-1.5;
-  } */
-
-  /* Individual hamburger menu lines */
-  /* .hamburger-button > span {
-    @apply block h-0.5 w-6 bg-general-40;
-  } */
-
-  /* Hover state for hamburger menu lines */
-  /* button:hover .hamburger-button > span {
-    @apply bg-general-80;
-  } */
-
   /* Logo styles with hover effects */
   .logo {
     @apply transition-all duration-200 ease-in-out;

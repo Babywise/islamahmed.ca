@@ -9,6 +9,13 @@ vi.mock("../../components/social/SocialNav", () => ({
   default: () => <div data-testid="social-nav">SocialNav</div>
 }));
 
+vi.mock("../../components/timeline/Timeline", () => ({
+  /**
+   * Mock Timeline component.
+   */
+  default: () => <div data-testid="timeline">Timeline</div>
+}));
+
 describe("home", () => {
   describe("render", () => {
     test("should render successfully", () => {
