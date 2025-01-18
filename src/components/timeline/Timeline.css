@@ -4,7 +4,7 @@
 @layer components {
   /* Timeline Container */
   .timeline-container {
-    @apply relative w-full text-xs;
+    @apply relative top-1 w-full text-base sm:text-xs;
 
     /* Vertical Line */
     @apply after:absolute after:left-4 after:top-0;
@@ -16,7 +16,7 @@
   /* Timeline Items */
   .timeline-item {
     @apply relative mb-10 w-full pl-16 pr-0;
-    @apply sm:w-1/2 sm:pl-0 sm:pr-[50px];
+    @apply sm:w-1/2 sm:pb-1 sm:pl-1 sm:pr-8;
 
     /* Horizontal Line */
     @apply before:absolute before:left-4 before:top-1/2 before:-translate-y-1/2;
@@ -34,7 +34,7 @@
 
   .timeline-item:nth-child(even) {
     @apply ml-0;
-    @apply sm:ml-[50%] sm:pl-[50px] sm:pr-0;
+    @apply sm:ml-[50%] sm:pb-1 sm:pl-8 sm:pr-1;
 
     @apply before:left-4;
     @apply sm:before:left-0 sm:before:right-auto;
@@ -45,8 +45,27 @@
 
   /* Timeline Cards */
   .timeline-card {
-    @apply relative rounded-lg p-6;
-    @apply bg-general-100/50;
+    @apply relative rounded-lg p-4;
+    @apply bg-general-100;
+
+    /* Border */
+    @apply before:-z-[1];
+    @apply before:absolute before:inset-[-1px];
+    @apply before:rounded-lg;
+    @apply before:p-[1px];
+
+    @apply after:-z-[1];
+    @apply after:absolute after:inset-[0px] after:rounded-lg after:bg-general-100;
+  }
+
+  .timeline-card#card-2024 {
+    /* Border Color */
+    @apply before:bg-gradient-to-b before:from-cyan-500 before:to-red-500;
+  }
+
+  .timeline-card#card-2017 {
+    /* Border Color */
+    @apply before:bg-gradient-to-b before:from-purple-500 before:to-red-500;
   }
 
   /* Year Section */
