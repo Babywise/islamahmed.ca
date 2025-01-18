@@ -4,43 +4,43 @@
 @layer components {
   /* Timeline Container */
   .timeline-container {
-    @apply relative top-1 w-full text-base sm:text-xs;
+    @apply relative top-1 w-full text-base lg:text-xs;
 
     /* Vertical Line */
     @apply after:absolute after:left-4 after:top-0;
     @apply after:h-full after:w-0.5;
     @apply after:bg-red-500;
-    @apply sm:after:left-1/2 sm:after:-translate-x-1/2;
+    @apply lg:after:left-1/2 lg:after:-translate-x-1/2;
   }
 
   /* Timeline Items */
   .timeline-item {
     @apply relative mb-10 w-full pl-16 pr-0;
-    @apply sm:w-1/2 sm:pb-1 sm:pl-1 sm:pr-8;
+    @apply lg:w-1/2 lg:pb-1 lg:pl-1 lg:pr-8;
 
     /* Horizontal Line */
     @apply before:absolute before:left-4 before:top-1/2 before:-translate-y-1/2;
     @apply before:h-0.5 before:w-12;
     @apply before:bg-red-500;
-    @apply sm:before:left-auto sm:before:right-0 sm:before:w-[50px];
+    @apply lg:before:left-auto lg:before:right-0 lg:before:w-[50px];
 
     /* Dot */
     @apply after:z-10;
     @apply after:border-general-40 after:bg-general-80;
     @apply after:rounded-full after:border-2;
     @apply after:absolute after:left-2 after:top-1/2 after:size-4 after:-translate-y-1/2;
-    @apply sm:after:-right-2 sm:after:left-auto;
+    @apply lg:after:-right-2 lg:after:left-auto;
   }
 
   .timeline-item:nth-child(even) {
     @apply ml-0;
-    @apply sm:ml-[50%] sm:pb-1 sm:pl-8 sm:pr-1;
+    @apply lg:ml-[50%] lg:pb-1 lg:pl-8 lg:pr-1;
 
     @apply before:left-4;
-    @apply sm:before:left-0 sm:before:right-auto;
+    @apply lg:before:left-0 lg:before:right-auto;
 
     @apply after:left-2;
-    @apply sm:after:-left-2 sm:after:right-auto;
+    @apply lg:after:-left-2 lg:after:right-auto;
   }
 
   /* Timeline Cards */
