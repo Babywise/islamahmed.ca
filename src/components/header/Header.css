@@ -12,6 +12,8 @@
     @apply h-[56px];
     /* Typography */
     @apply font-bold tracking-widest;
+    /* Blur */
+    @apply before:absolute before:inset-0 before:-z-40 before:backdrop-blur-md;
   }
 
   /* Header Navigation Styles */
@@ -62,6 +64,8 @@
     @apply transform transition-none;
     /* Styling for non-small screens */
     @apply sm:relative sm:top-0 sm:flex sm:w-auto sm:translate-x-0 sm:items-center sm:gap-4 sm:bg-transparent sm:p-0;
+    /* Blur */
+    @apply before:absolute before:inset-0 before:-z-40 before:backdrop-blur-md;
   }
 
   .header-nav li {
