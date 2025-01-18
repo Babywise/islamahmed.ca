@@ -8,6 +8,8 @@
     @apply flex flex-col items-center justify-center text-center;
     /* Sizing */
     @apply mt-[calc(28px+0.5rem)] min-h-[calc(100svh-56px-84px-1.5rem)];
+    /* Typography */
+    @apply tracking-widest;
   }
 
   .hero-content h1 {
