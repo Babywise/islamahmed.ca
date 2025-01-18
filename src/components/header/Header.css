@@ -13,7 +13,7 @@
     /* Typography */
     @apply font-bold tracking-widest;
     /* Blur */
-    @apply before:absolute before:inset-0 before:-z-40 before:backdrop-blur-md;
+    @apply before:absolute before:inset-0 before:-z-[1] before:backdrop-blur-md;
   }
 
   /* Header Navigation Styles */
@@ -65,7 +65,7 @@
     /* Styling for non-small screens */
     @apply lg:relative lg:top-0 lg:flex lg:w-auto lg:translate-x-0 lg:items-center lg:gap-4 lg:bg-transparent lg:p-0;
     /* Blur */
-    @apply before:absolute before:inset-0 before:-z-40 before:backdrop-blur-md;
+    @apply before:absolute before:inset-0 before:-z-[1] before:backdrop-blur-md;
   }
 
   .header-nav li {
