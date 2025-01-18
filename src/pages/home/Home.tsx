@@ -7,12 +7,11 @@ const timelineData = [
   {
     bullets: [
       "Designed and implemented an automated script to extract 3D assets from SharePoint using Python",
-      "Developed a robust pipeline to collect asset metadata using Python, Node.js, React, Three.js, and Colhere",
-      "Built and deployed containerized solutions on Azure cloud infrastructure using Docker",
-      "Enhanced team productivity through proactive troubleshooting and code optimization",
+      "Developed a robust pipeline to collect asset metadata using Python, Node.js, React, Three.js, and Cohere",
+      "Built and deployed containerized solutions on Azure cloud",
       "Collaborated with teams to implement testing frameworks using Jest, Vitest, and ESLint",
       "Partnered with DevOps for CI/CD pipeline maintenance",
-      "Conducted detailed code reviews and maintained coding standards"
+      "Conducted detailed code reviews to maintain coding standards"
     ],
     description:
       "Developed and maintained asset management platform while contributing to various aspects of the development lifecycle.",
@@ -25,9 +24,13 @@ const timelineData = [
       "TypeScript",
       "Jira",
       "Confluence",
-      "Bitbucket",
+      "Cohere",
+      "ESLint",
       "MongoDB",
-      "Express"
+      "Express",
+      "Three.js",
+      "Vitest",
+      "Jest"
     ],
     title: "Software Developer - Web",
     year: "2024"
