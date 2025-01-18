@@ -44,7 +44,7 @@
     /* Sizing */
     @apply p-0;
     /* Hide button on non-small screens */
-    @apply sm:hidden;
+    @apply lg:hidden;
   }
 
   .header-nav button svg {
@@ -63,7 +63,7 @@
     /* Transform and transition */
     @apply transform transition-none;
     /* Styling for non-small screens */
-    @apply sm:relative sm:top-0 sm:flex sm:w-auto sm:translate-x-0 sm:items-center sm:gap-4 sm:bg-transparent sm:p-0;
+    @apply lg:relative lg:top-0 lg:flex lg:w-auto lg:translate-x-0 lg:items-center lg:gap-4 lg:bg-transparent lg:p-0;
     /* Blur */
     @apply before:absolute before:inset-0 before:-z-40 before:backdrop-blur-md;
   }
@@ -72,7 +72,7 @@
     /* Display and alignment */
     @apply flex items-center justify-center;
     /* Sizing */
-    @apply sm:py-0;
+    @apply lg:py-0;
   }
 
   .header-nav li a {
@@ -81,6 +81,6 @@
     /* Spacing */
     @apply p-2;
     /* Styling for non-small screens */
-    @apply sm:px-1 sm:py-0;
+    @apply lg:px-1 lg:py-0;
   }
 }
