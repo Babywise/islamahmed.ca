@@ -49,34 +49,37 @@ describe("home", () => {
   });
 
   describe("navigation", () => {
-    const mockScrollIntoView = vi.fn();
-    const mockElement = Object.assign(document.createElement("div"), {
-      scrollIntoView: mockScrollIntoView
-    });
-
-    beforeEach(() => {
-      vi.mock("global", () => ({
-        HTMLElement: {
-          prototype: {
-            scrollIntoView: mockScrollIntoView
-          }
-        }
-      }));
-      // Mock document.getElementById
-      vi.spyOn(document, "getElementById").mockImplementation(id => {
-        if (id === "start") {
-          return mockElement;
-        }
-        return null;
-      });
-    });
-
-    afterEach(() => {
-      vi.clearAllMocks();
-    });
-
     test("should navigate to start section", () => {
       expect.assertions(2);
+
+      // Mock window.scrollTo
+      const mockScrollTo = vi.fn();
+      window.scrollTo = mockScrollTo;
+
+      // Create mock element
+      const mockStartElement = document.createElement("div");
+
+      /**
+       * Mock getBoundingClientRect.
+       */
+      mockStartElement.getBoundingClientRect = () => ({ top: 100 }) as DOMRect;
+
+      // Mock getElementById
+      vi.spyOn(document, "getElementById").mockImplementation(id => {
+        if (id === "start") return mockStartElement;
+        return null;
+      });
+
+      // Mock header element
+      const mockHeader = document.createElement("header");
+      Object.defineProperty(mockHeader, "offsetHeight", { value: 50 });
+      vi.spyOn(document, "querySelector").mockImplementation(selector => {
+        if (selector === "header") return mockHeader;
+        return null;
+      });
+
+      // Mock window.scrollY
+      Object.defineProperty(window, "scrollY", { value: 0 });
 
       const { container } = render(<Home />);
       const heroButton = container
@@ -85,8 +88,11 @@ describe("home", () => {
 
       heroButton?.click();
 
-      expect(mockScrollIntoView).toHaveBeenCalledTimes(1);
-      expect(mockScrollIntoView).toHaveBeenCalledWith({ behavior: "smooth" });
+      expect(mockScrollTo).toHaveBeenCalledTimes(1);
+      expect(mockScrollTo).toHaveBeenCalledWith({
+        behavior: "smooth",
+        top: 50 // elementPosition (100 + 0) - headerHeight (50)
+      });
     });
   });
 });

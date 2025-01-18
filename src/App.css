@@ -26,11 +26,6 @@
     @apply z-50 bg-general-60/25;
   }
 
-  /* Common spacing and text styles for major layout elements */
-  section {
-    @apply tracking-widest;
-  }
-
   /* Interactive link styles with focus states */
   a {
     @apply rounded p-2;

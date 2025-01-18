@@ -21,7 +21,7 @@ function Timeline({ items }: { items: TimelineItem[] }) {
     <div className="timeline-container">
       {items.map(item => (
         <div className="timeline-item" key={item.title}>
-          <div className="timeline-card">
+          <div className="timeline-card" id={`card-${item.year}`}>
             <div className="year-section">
               <span className="year" id={`year-${item.year}`}>
                 {item.year}
