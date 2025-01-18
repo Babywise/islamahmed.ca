@@ -107,12 +107,12 @@
 
   /* Bullet Points */
   .bullet-points {
-    @apply mb-5 rounded-lg py-5 pl-10 pr-4;
+    @apply mb-3 rounded-lg py-5 pl-10 pr-4;
     @apply bg-general-40/20;
   }
 
   .bullet-points li {
-    @apply relative list-none py-2 leading-tight;
+    @apply relative list-none py-1 leading-tight;
     @apply text-general-40;
     @apply hover:text-general-80;
 
