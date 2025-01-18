@@ -62,15 +62,17 @@
     @apply w-full p-4;
     /* Transform and transition */
     @apply transform transition-none;
+    /* Display and alignment */
+    @apply flex flex-col items-center justify-center;
     /* Styling for non-small screens */
-    @apply lg:relative lg:top-0 lg:flex lg:w-auto lg:translate-x-0 lg:items-center lg:gap-4 lg:bg-transparent lg:p-0;
+    @apply lg:relative lg:top-0 lg:w-auto lg:translate-x-0 lg:flex-row lg:items-center lg:gap-4 lg:bg-transparent lg:p-0;
     /* Blur */
     @apply before:absolute before:inset-0 before:-z-[1] before:backdrop-blur-md;
   }
 
   .header-nav li {
     /* Display and alignment */
-    @apply flex items-center justify-center;
+    @apply w-fit;
     /* Sizing */
     @apply lg:py-0;
   }
