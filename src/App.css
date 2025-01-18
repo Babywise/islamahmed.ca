@@ -23,7 +23,7 @@
   /* Z-index and background for header and footer */
   header,
   footer {
-    @apply z-50 bg-general-60/25;
+    @apply bg-general-50/75 z-50;
   }
 
   /* Interactive link styles with focus states */
@@ -39,7 +39,7 @@
 
   /* Navigation list background */
   ul {
-    @apply bg-general-40/35;
+    @apply bg-general-50/60;
   }
 
   /* Button styles with hover and focus states */
