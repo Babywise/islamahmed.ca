@@ -60,7 +60,8 @@ function Home() {
       <section id="hero">
         <div className="hero-content" role="none">
           <h1>
-            <span>Islam Ahmed</span>, <br />
+            <span>Islam Ahmed</span>
+            <br />
             Full-stack developer
             <br />
             driven by security and UX design.
@@ -68,7 +69,16 @@ function Home() {
           <button
             onClick={() => {
               const element = document.getElementById("start");
-              element?.scrollIntoView({ behavior: "smooth" });
+              const header = document.querySelector("header");
+              if (element && header) {
+                const headerHeight = header.offsetHeight;
+                const elementPosition =
+                  element.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo({
+                  behavior: "smooth",
+                  top: elementPosition - headerHeight
+                });
+              }
             }}
             type="button">
             <span>Begin the Tour</span>
@@ -79,12 +89,10 @@ function Home() {
       <SocialNav />
       {/* <!-- Start section --> */}
       <section id="start">
-        <div className="start-content" role="none">
-          <h1>Start</h1>
-        </div>
+        <div className="start-content" role="none" />
       </section>
       {/* <!-- Experience Timeline section --> */}
-      <section className="timeline-section" id="experience">
+      <section id="experience">
         <Timeline items={timelineData} />
       </section>
     </>
