@@ -45,9 +45,9 @@ function Timeline({ items }: { items: TimelineItem[] }) {
             {item.tags ? (
               <div className="tags">
                 {item.tags.map(tag => (
-                  <span className="tag" key={tag}>
+                  <button className="tag" key={tag} type="button">
                     {tag}
-                  </span>
+                  </button>
                 ))}
               </div>
             ) : null}

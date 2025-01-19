@@ -43,10 +43,10 @@
     /* Display and alignment */
     @apply flex items-center justify-center;
     /* Visual styles */
-    @apply rounded-full bg-general-10/15 p-[0px];
+    @apply rounded-full bg-general-10/10 p-[0px];
     /* Interactive states and animations */
     @apply hover:-translate-y-1 hover:bg-general-10/80 hover:text-general-40;
-    @apply transition-all duration-300 ease-in-out;
+    @apply transition-transform duration-300 ease-in-out;
   }
 
   .social-nav svg {
