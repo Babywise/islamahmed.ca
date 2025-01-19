@@ -29,7 +29,7 @@
 @layer utilities {
   /* Makes cursor elements visible when active */
   .cursor-visible {
-    @apply opacity-100;
+    @apply lg:opacity-100;
   }
 
   /* Styles for cursor dot when clicking */

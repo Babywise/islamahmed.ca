@@ -63,7 +63,7 @@
   *[onclick],
   *[style*="cursor: pointer"],
   *[style*="cursor:pointer"] {
-    @apply cursor-none;
+    @apply cursor-auto lg:cursor-none;
   }
 }
 
