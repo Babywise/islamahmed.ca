@@ -9,7 +9,8 @@
     /* Vertical Line */
     @apply after:absolute after:left-2 after:top-0;
     @apply after:h-full after:w-0.5;
-    @apply after:bg-red-500;
+    @apply after:bg-gradient-to-b;
+    @apply after:[--tw-gradient-stops:theme(colors.cyan.500)_0%,theme(colors.red.500)_55%,theme(colors.purple.500)_60%,theme(colors.green.500)_100%];
     @apply lg:after:left-1/2 lg:after:-translate-x-1/2;
   }
 
@@ -43,6 +44,28 @@
     /* Dot */
     @apply after:left-0;
     @apply lg:after:-left-2 lg:after:right-auto;
+  }
+
+  .timeline-item:has(.timeline-card#card-2024) {
+    /* Horizontal Line Color */
+    @apply before:bg-gradient-to-b;
+    @apply before:[--tw-gradient-stops:theme(colors.cyan.500)_-200%,theme(colors.red.500)_300%];
+
+    /* Dot Color */
+    @apply after:bg-gradient-to-b;
+    @apply after:[--tw-gradient-stops:theme(colors.cyan.500)_-200%,theme(colors.red.500)_300%];
+    @apply after:border-general-100/30;
+  }
+
+  .timeline-item:has(.timeline-card#card-2017) {
+    /* Horizontal Line Color */
+    @apply before:bg-gradient-to-b;
+    @apply before:[--tw-gradient-stops:theme(colors.purple.500)_-200%,theme(colors.green.500)_300%];
+
+    /* Dot Color */
+    @apply after:bg-gradient-to-b;
+    @apply after:[--tw-gradient-stops:theme(colors.purple.500)_-200%,theme(colors.green.500)_300%];
+    @apply after:border-general-100/30;
   }
 
   /* Timeline Cards */
