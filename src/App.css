@@ -23,7 +23,7 @@
   /* Z-index and background for header and footer */
   header,
   footer {
-    @apply bg-general-50/75 z-50;
+    @apply z-50 bg-general-50/75;
   }
 
   /* Interactive link styles with focus states */
@@ -34,7 +34,7 @@
 
   /* Navigation list items with hover effects */
   li {
-    @apply font-bold hover:text-general-80 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.95)];
+    @apply font-bold hover:text-general-0/75 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.95)];
   }
 
   /* Navigation list background */
@@ -46,7 +46,7 @@
   button {
     @apply rounded-full p-3 text-xl text-general-10/75;
     @apply outline outline-2 outline-general-10/75;
-    @apply hover:font-bold hover:text-general-80 hover:outline-4 hover:outline-general-80 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.75)];
+    @apply hover:text-general-0/75 hover:outline-4 hover:outline-general-0/75 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.75)];
     @apply focus:outline-none focus:ring-4 focus:!ring-general-10;
   }
 
