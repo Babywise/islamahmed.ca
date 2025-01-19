@@ -129,6 +129,25 @@
 
   .tag {
     @apply rounded-full px-4 py-1.5 text-sm;
-    @apply bg-general-40/20 text-general-40;
+    @apply text-general-40;
+    @apply outline-none hover:outline-none;
+    @apply relative isolate;
+
+    /* Border */
+    @apply before:absolute before:inset-0 before:-z-[1] before:rounded-full;
+    @apply before:p-[1px];
+
+    @apply after:absolute after:inset-[1px] after:-z-[1] after:rounded-full;
+    @apply after:bg-general-100/95;
+  }
+
+  .timeline-card#card-2024 .tag {
+    /* Border Color */
+    @apply before:bg-gradient-to-b before:from-cyan-500 before:to-red-500;
+  }
+
+  .timeline-card#card-2017 .tag {
+    /* Border Color */
+    @apply before:bg-gradient-to-b before:from-purple-500 before:to-red-500;
   }
 }
