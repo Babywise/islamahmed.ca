@@ -9,7 +9,8 @@
     /* Vertical Line */
     @apply after:absolute after:left-2 after:top-0;
     @apply after:h-full after:w-0.5;
-    @apply after:bg-red-500;
+    @apply after:bg-gradient-to-b;
+    @apply after:[--tw-gradient-stops:theme(colors.cyan.500)_0%,theme(colors.red.500)_55%,theme(colors.purple.500)_60%,theme(colors.green.500)_100%];
     @apply lg:after:left-1/2 lg:after:-translate-x-1/2;
   }
 
@@ -21,7 +22,7 @@
     /* Horizontal Line */
     @apply before:absolute before:left-2 before:top-1/2 before:-translate-y-1/2;
     @apply before:h-[2px] before:w-6;
-    @apply before:bg-red-500;
+    @apply before:bg-gray-500;
     @apply lg:before:left-auto lg:before:right-0 lg:before:w-8;
 
     /* Dot */
@@ -45,6 +46,28 @@
     @apply lg:after:-left-2 lg:after:right-auto;
   }
 
+  .timeline-item:has(.timeline-card#card-2024) {
+    /* Horizontal Line Color */
+    @apply before:bg-gradient-to-b;
+    @apply before:[--tw-gradient-stops:theme(colors.cyan.500)_-200%,theme(colors.red.500)_300%];
+
+    /* Dot Color */
+    @apply after:bg-gradient-to-b;
+    @apply after:[--tw-gradient-stops:theme(colors.cyan.500)_-200%,theme(colors.red.500)_300%];
+    @apply after:border-general-100/30;
+  }
+
+  .timeline-item:has(.timeline-card#card-2017) {
+    /* Horizontal Line Color */
+    @apply before:bg-gradient-to-b;
+    @apply before:[--tw-gradient-stops:theme(colors.purple.500)_-200%,theme(colors.green.500)_300%];
+
+    /* Dot Color */
+    @apply after:bg-gradient-to-b;
+    @apply after:[--tw-gradient-stops:theme(colors.purple.500)_-200%,theme(colors.green.500)_300%];
+    @apply after:border-general-100/30;
+  }
+
   /* Timeline Cards */
   .timeline-card {
     @apply relative rounded-lg p-4;
@@ -66,7 +89,7 @@
 
   .timeline-card#card-2017 {
     /* Border Color */
-    @apply before:bg-gradient-to-b before:from-purple-500 before:to-red-500;
+    @apply before:bg-gradient-to-b before:from-purple-500 before:to-green-500;
   }
 
   /* Year Section */
@@ -115,12 +138,20 @@
   .bullet-points li {
     @apply relative list-none py-1 leading-tight;
     @apply text-general-40;
-    
+
     @apply hover:text-general-80;
 
     @apply before:absolute before:-left-6 before:top-1/2 before:-translate-y-1/2 before:rounded-full;
     @apply before:h-1.5 before:w-1.5 before:rounded-full;
+    @apply before:bg-general-40;
+  }
+
+  .timeline-card#card-2024 .bullet-points li {
     @apply before:bg-red-500;
+  }
+
+  .timeline-card#card-2017 .bullet-points li {
+    @apply before:bg-green-500;
   }
 
   /* Tags */
@@ -134,7 +165,7 @@
     @apply outline-none hover:outline-none;
     @apply relative isolate;
 
-    @apply hover:-translate-y-1;
+    @apply hover:-translate-y-1 hover:text-general-10 hover:after:bg-general-100/50;
     @apply transition-transform duration-300 ease-in-out;
 
     /* Border */
@@ -152,6 +183,6 @@
 
   .timeline-card#card-2017 .tag {
     /* Border Color */
-    @apply before:bg-gradient-to-b before:from-purple-500 before:to-red-500;
+    @apply before:bg-gradient-to-b before:from-purple-500 before:to-green-500;
   }
 }
