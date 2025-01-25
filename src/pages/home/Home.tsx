@@ -1,5 +1,8 @@
 import "./Home.css";
 
+import { FaBehance, FaGithub, FaLinkedin } from "react-icons/fa6";
+
+import type { SocialLink } from "../../components/social/SocialNav";
 import SocialNav from "../../components/social/SocialNav";
 import Timeline from "../../components/timeline/Timeline";
 
@@ -53,6 +56,24 @@ const timelineData = [
   }
 ];
 
+const socialLinks: SocialLink[] = [
+  {
+    icon: <FaLinkedin size={30} />,
+    label: "LinkedIn",
+    url: "https://linkedin.com/in/issia"
+  },
+  {
+    icon: <FaGithub size={30} />,
+    label: "GitHub",
+    url: "https://github.com/babywise"
+  },
+  {
+    icon: <FaBehance size={30} />,
+    label: "Behance",
+    url: "https://behance.net/islamdoesart"
+  }
+];
+
 /**
  * Home page component.
  */
@@ -89,7 +110,7 @@ function Home() {
         </div>
       </section>
       {/* <!-- Social navigation --> */}
-      <SocialNav />
+      <SocialNav socialLinks={socialLinks} />
       {/* <!-- Start section --> */}
       <section id="start">
         <div className="start-content" role="none" />
