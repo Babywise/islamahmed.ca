@@ -1,36 +1,23 @@
 import "./SocialNav.css";
 
 import type { ReactNode } from "react";
-import { FaBehance, FaGithub, FaLinkedin } from "react-icons/fa6";
 
-interface SocialLink {
+export interface SocialLink {
   icon: ReactNode;
   label: string;
   url: string;
 }
 
-const socialLinks: SocialLink[] = [
-  {
-    icon: <FaLinkedin size={30} />,
-    label: "LinkedIn",
-    url: "https://linkedin.com/in/issia"
-  },
-  {
-    icon: <FaGithub size={30} />,
-    label: "GitHub",
-    url: "https://github.com/babywise"
-  },
-  {
-    icon: <FaBehance size={30} />,
-    label: "Behance",
-    url: "https://behance.net/islamdoesart"
-  }
-];
+interface SocialNavProps {
+  socialLinks: SocialLink[];
+}
 
 /**
  * Social navigation component.
+ * @param props The component props containing social links.
+ * @param props.socialLinks An array of social links.
  */
-function SocialNav() {
+function SocialNav({ socialLinks }: SocialNavProps) {
   return (
     <nav className="social-nav">
       <ul>
