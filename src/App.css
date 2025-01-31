@@ -68,7 +68,7 @@
 
   /* Scrollbar styles */
   ::-webkit-scrollbar {
-    @apply w-2;
+    @apply w-3;
   }
 
   ::-webkit-scrollbar-track {
@@ -77,7 +77,7 @@
 
   ::-webkit-scrollbar-thumb {
     @apply rounded-full;
-    @apply bg-[radial-gradient(8px_100%_at_center,theme(colors.general.100)_0%,theme(colors.general.40)_20%,theme(colors.general.40)_50%,theme(colors.general.100)_75%,theme(colors.general.40)_100%)];
+    @apply bg-general-50 bg-[url('/images/aesthetic-shapes.gif')] bg-cover bg-center bg-blend-darken;
   }
 }
 
