@@ -67,6 +67,10 @@
   }
 
   /* Scrollbar styles */
+  * {
+    @apply [scrollbar-color:theme(colors.general.50)_theme(colors.general.80)] [scrollbar-width:thick];
+  }
+
   ::-webkit-scrollbar {
     @apply w-3;
   }
