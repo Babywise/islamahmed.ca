@@ -4,6 +4,7 @@ import { FaBehance, FaGithub, FaLinkedin } from "react-icons/fa6";
 
 import type { SocialLink } from "../../components/social/SocialNav";
 import SocialNav from "../../components/social/SocialNav";
+import TabContainer from "../../components/tabs/TabContainer";
 import Timeline from "../../components/timeline/Timeline";
 
 const timelineData = [
@@ -115,9 +116,22 @@ function Home() {
       <section id="start">
         <div className="start-content" role="none" />
       </section>
-      {/* <!-- Experience Timeline section --> */}
+      {/* <!-- Experience section --> */}
       <section id="experience">
-        <Timeline items={timelineData} />
+        <TabContainer
+          tabs={[
+            {
+              content: <Timeline items={timelineData} />,
+              id: "work",
+              label: "Work"
+            },
+            {
+              content: <>Education</>,
+              id: "education",
+              label: "Education"
+            }
+          ]}
+        />
       </section>
     </>
   );
