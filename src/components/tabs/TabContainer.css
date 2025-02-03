@@ -1,0 +1,36 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .tab-container {
+    @apply my-5 w-full;
+  }
+
+  .tab-header {
+    @apply flex w-full bg-general-90 p-1;
+  }
+
+  .tab-button {
+    @apply flex-1 px-6 py-3 text-center text-general-10/75 transition-all;
+  }
+
+  .tab-button:first-child {
+    @apply rounded-r-lg;
+  }
+
+  .tab-button:last-child {
+    @apply rounded-l-lg;
+  }
+
+  .tab-button:not(:last-child):not(:first-child) {
+    @apply rounded-none;
+  }
+
+  .tab-button.active {
+    @apply bg-general-50/50 text-general-10/75 shadow-sm;
+  }
+
+  .tab-content {
+    @apply py-5;
+  }
+}
