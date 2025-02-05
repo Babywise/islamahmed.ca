@@ -25,6 +25,7 @@
   .hero-content button {
     /* Button styles */
     @apply my-4 w-full min-w-48 max-w-56 font-bold;
+    @apply outline outline-2 outline-general-10/15;
   }
 
   /* Start Section Styles */
