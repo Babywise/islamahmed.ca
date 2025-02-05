@@ -166,6 +166,7 @@
     @apply relative isolate;
 
     @apply hover:-translate-y-1 hover:text-general-10 hover:after:bg-general-100/50;
+    @apply focus:-translate-y-1 focus:text-general-10 focus:after:bg-general-100/50;
     @apply transition-transform duration-300 ease-in-out;
 
     /* Border */
