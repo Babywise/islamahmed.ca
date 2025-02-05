@@ -45,6 +45,10 @@
     @apply p-0;
     /* Hide button on non-small screens */
     @apply lg:hidden;
+    /* Visual styles */
+    @apply outline outline-2 outline-general-10/15;
+    /* Focus styles */
+    @apply focus:outline-none focus:ring-4 focus:ring-general-10/15;
   }
 
   .header-nav button svg {
