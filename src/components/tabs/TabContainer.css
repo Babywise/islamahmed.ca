@@ -7,11 +7,11 @@
   }
 
   .tab-header {
-    @apply flex w-full bg-general-90 p-1;
+    @apply flex w-full p-1;
   }
 
   .tab-button {
-    @apply flex-1 px-6 py-3 text-center text-general-10/75 transition-all;
+    @apply flex-1 bg-general-100/90 px-6 py-3 text-center text-general-10/75 transition-all;
   }
 
   .tab-button:first-child {
@@ -27,7 +27,7 @@
   }
 
   .tab-button.active {
-    @apply bg-general-50/50 text-general-10/75 shadow-sm;
+    @apply bg-general-50/90 text-general-10/75 shadow-sm;
   }
 
   .tab-content {
