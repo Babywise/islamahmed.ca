@@ -45,9 +45,7 @@
   /* Button styles with hover and focus states */
   button {
     @apply rounded-full p-3 text-xl text-general-10/75;
-    @apply outline outline-2 outline-general-10/15;
-    @apply hover:text-general-10/75 hover:outline-4 hover:outline-general-0/15 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.75)];
-    @apply focus:outline-none focus:ring-4 focus:ring-general-10/15;
+    @apply hover:text-general-10/75 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.75)];
   }
 
   /* Custom cursor styles for interactive elements
