@@ -10,9 +10,16 @@
     @apply after:absolute after:left-2 after:top-0;
     @apply after:h-full after:w-0.5;
     @apply after:bg-gradient-to-b;
-    @apply after:[--tw-gradient-stops:theme(colors.cyan.500)_0%,theme(colors.red.500)_55%,theme(colors.purple.500)_60%,theme(colors.green.500)_100%];
-    /* @apply after:[--tw-gradient-stops:theme(colors.cyan.500)_0%,theme(colors.red.500)_35%,theme(colors.orange.500)_40%,theme(colors.purple.500)_80%,theme(colors.green.500)_100%]; */
+
     @apply lg:after:left-1/2 lg:after:-translate-x-1/2;
+  }
+
+  .timeline-container#timeline-work {
+    @apply after:[--tw-gradient-stops:theme(colors.cyan.500)_0%,theme(colors.red.500)_55%,theme(colors.purple.500)_60%,theme(colors.green.500)_100%];
+  }
+
+  .timeline-container#timeline-education {
+    @apply after:[--tw-gradient-stops:theme(colors.green.500)_0%,theme(colors.pink.500)_100%];
   }
 
   /* Timeline Items */
@@ -47,37 +54,37 @@
     @apply lg:after:-left-2 lg:after:right-auto;
   }
 
-  .timeline-item:has(.timeline-card#card-2024) {
+  .timeline-item:has(.timeline-card) {
     /* Horizontal Line Color */
     @apply before:bg-gradient-to-b;
-    @apply before:[--tw-gradient-stops:theme(colors.cyan.500)_-200%,theme(colors.red.500)_300%];
 
     /* Dot Color */
     @apply after:bg-gradient-to-b;
-    @apply after:[--tw-gradient-stops:theme(colors.cyan.500)_-200%,theme(colors.red.500)_300%];
     @apply after:border-general-100/30;
+  }
+
+  .timeline-item:has(.timeline-card#card-2024) {
+    /* Horizontal Line Color */
+    @apply before:[--tw-gradient-stops:theme(colors.cyan.500)_-200%,theme(colors.red.500)_300%];
+
+    /* Dot Color */
+    @apply after:[--tw-gradient-stops:theme(colors.cyan.500)_-200%,theme(colors.red.500)_300%];
   }
 
   .timeline-item:has(.timeline-card#card-2017) {
     /* Horizontal Line Color */
-    @apply before:bg-gradient-to-b;
     @apply before:[--tw-gradient-stops:theme(colors.purple.500)_-200%,theme(colors.green.500)_300%];
 
     /* Dot Color */
-    @apply after:bg-gradient-to-b;
     @apply after:[--tw-gradient-stops:theme(colors.purple.500)_-200%,theme(colors.green.500)_300%];
-    @apply after:border-general-100/30;
   }
 
   .timeline-item:has(.timeline-card#card-2020) {
     /* Horizontal Line Color */
-    @apply before:bg-gradient-to-b;
-    @apply before:[--tw-gradient-stops:theme(colors.orange.500)_-200%,theme(colors.yellow.500)_300%];
+    @apply before:[--tw-gradient-stops:theme(colors.green.500)_-200%,theme(colors.pink.500)_300%];
 
     /* Dot Color */
-    @apply after:bg-gradient-to-b;
-    @apply after:[--tw-gradient-stops:theme(colors.orange.500)_-200%,theme(colors.yellow.500)_300%];
-    @apply after:border-general-100/30;
+    @apply after:[--tw-gradient-stops:theme(colors.green.500)_-200%,theme(colors.pink.500)_300%];
   }
 
   /* Timeline Cards */
@@ -89,6 +96,7 @@
     @apply before:absolute before:inset-[-1px];
     @apply before:rounded-lg;
     @apply before:p-[1px];
+    @apply before:bg-gradient-to-b;
 
     @apply after:-z-[1];
     @apply after:absolute after:inset-[0px] after:rounded-lg after:bg-general-100/95;
@@ -96,17 +104,17 @@
 
   .timeline-card#card-2024 {
     /* Border Color */
-    @apply before:bg-gradient-to-b before:from-cyan-500 before:to-red-500;
+    @apply before:from-cyan-500 before:to-red-500;
   }
 
   .timeline-card#card-2017 {
     /* Border Color */
-    @apply before:bg-gradient-to-b before:from-purple-500 before:to-green-500;
+    @apply before:from-purple-500 before:to-green-500;
   }
 
   .timeline-card#card-2020 {
     /* Border Color */
-    @apply before:bg-gradient-to-b before:from-orange-500 before:to-yellow-500;
+    @apply before:from-green-500 before:to-pink-500;
   }
 
   /* Year Section */
@@ -127,7 +135,7 @@
   }
 
   .year#year-2020 {
-    @apply text-orange-500 drop-shadow-[0_0_7px_theme(colors.orange.500)];
+    @apply text-green-500 drop-shadow-[0_0_7px_theme(colors.green.500)];
   }
 
   .duration {
@@ -160,8 +168,6 @@
     @apply relative list-none py-1 leading-tight;
     @apply text-general-40;
 
-    @apply hover:text-general-80;
-
     @apply before:absolute before:-left-6 before:top-1/2 before:-translate-y-1/2 before:rounded-full;
     @apply before:h-1.5 before:w-1.5 before:rounded-full;
     @apply before:bg-general-40;
@@ -176,7 +182,7 @@
   }
 
   .timeline-card#card-2020 .bullet-points li {
-    @apply before:bg-yellow-500;
+    @apply before:bg-pink-500;
   }
 
   /* Tags */
@@ -197,6 +203,7 @@
     /* Border */
     @apply before:absolute before:inset-0 before:-z-[1] before:rounded-full;
     @apply before:p-[1px];
+    @apply before:bg-gradient-to-b;
 
     @apply after:absolute after:inset-[1px] after:-z-[1] after:rounded-full;
     @apply after:bg-general-100/95;
@@ -204,16 +211,16 @@
 
   .timeline-card#card-2024 .tag {
     /* Border Color */
-    @apply before:bg-gradient-to-b before:from-cyan-500 before:to-red-500;
+    @apply before:from-cyan-500 before:to-red-500;
   }
 
   .timeline-card#card-2017 .tag {
     /* Border Color */
-    @apply before:bg-gradient-to-b before:from-purple-500 before:to-green-500;
+    @apply before:from-purple-500 before:to-green-500;
   }
 
   .timeline-card#card-2020 .tag {
     /* Border Color */
-    @apply before:bg-gradient-to-b before:from-orange-500 before:to-yellow-500;
+    @apply before:from-green-500 before:to-pink-500;
   }
 }

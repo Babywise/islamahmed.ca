@@ -15,10 +15,11 @@ interface TimelineItem {
  * Timeline component.
  * @param props The component props object.
  * @param props.items An array of timeline items.
+ * @param props.id The ID of the timeline.
  */
-function Timeline({ items }: { items: TimelineItem[] }) {
+function Timeline({ id, items }: { id: string; items: TimelineItem[] }) {
   return (
-    <div className="timeline-container">
+    <div className="timeline-container" id={`timeline-${id}`}>
       {items.map(item => (
         <div className="timeline-item" key={item.title}>
           <div className="timeline-card" id={`card-${item.year}`}>

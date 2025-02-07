@@ -34,7 +34,7 @@
 
   /* Navigation list items with hover effects */
   li {
-    @apply font-bold hover:text-general-0/75 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.95)];
+    @apply font-bold hover:text-general-10/75 hover:drop-shadow-[0_0_0.35em_theme(colors.general[100])];
   }
 
   /* Navigation list background */
@@ -45,7 +45,7 @@
   /* Button styles with hover and focus states */
   button {
     @apply rounded-full p-3 text-xl text-general-10/75;
-    @apply hover:text-general-10/75 hover:drop-shadow-[0_0_0.25em_theme(colors.general[10]/0.75)];
+    @apply hover:text-general-10/75 hover:drop-shadow-[0_0_0.35em_theme(colors.general[10]/0.75)];
   }
 
   /* Custom cursor styles for interactive elements

@@ -166,12 +166,14 @@ function Home() {
         <TabContainer
           tabs={[
             {
-              content: <Timeline items={workTimelineData} />,
+              content: <Timeline id="work" items={workTimelineData} />,
               id: "work",
               label: "Work"
             },
             {
-              content: <Timeline items={educationTimelineData} />,
+              content: (
+                <Timeline id="education" items={educationTimelineData} />
+              ),
               id: "education",
               label: "Education"
             }
