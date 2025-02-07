@@ -7,7 +7,7 @@ import SocialNav from "../../components/social/SocialNav";
 import TabContainer from "../../components/tabs/TabContainer";
 import Timeline from "../../components/timeline/Timeline";
 
-const timelineData = [
+const workTimelineData = [
   {
     bullets: [
       "Designed and implemented an automated script to extract 3D assets from SharePoint using Python",
@@ -54,6 +54,51 @@ const timelineData = [
     tags: ["Hardware Repair", "Customer Support", "Troubleshooting"],
     title: "Computer Technician",
     year: "2017"
+  }
+];
+
+const educationTimelineData = [
+  {
+    bullets: [
+      "Advanced computing courses and algorithms",
+      "Led software development projects",
+      "Network security and information security management",
+      "Enterprise application development and systems architecture",
+      "Database systems and data management",
+      "Software quality assurance and testing",
+      "User experience design and optimization"
+    ],
+    description: "Bachelor of Computer Science",
+    duration: "4 years",
+    location: "Waterloo, ON",
+    organization: "Conestoga College",
+    tags: [
+      "InfoSec",
+      "Enterprise Dev",
+      "DB Systems",
+      "UX/UI",
+      "QA",
+      "Network Sec",
+      "SW Architecture",
+      "Algorithms",
+      "Parallel Computing",
+      "OS",
+      "DSA",
+      "Unit Testing",
+      "CI/CD",
+      "Perf Analysis",
+      "Security Mgmt",
+      "Linear Algebra",
+      "Discrete Math",
+      "OOP",
+      "Sys Analysis",
+      "Tech Writing",
+      "SDLC",
+      "Rootkits",
+      "Privacy"
+    ],
+    title: "Student",
+    year: "2020"
   }
 ];
 
@@ -121,12 +166,12 @@ function Home() {
         <TabContainer
           tabs={[
             {
-              content: <Timeline items={timelineData} />,
+              content: <Timeline items={workTimelineData} />,
               id: "work",
               label: "Work"
             },
             {
-              content: <>Education</>,
+              content: <Timeline items={educationTimelineData} />,
               id: "education",
               label: "Education"
             }
