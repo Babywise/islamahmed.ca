@@ -65,18 +65,18 @@
 
   .timeline-item:has(.timeline-card#card-2024) {
     /* Horizontal Line Color */
-    @apply before:[--tw-gradient-stops:theme(colors.cyan.500)_-200%,theme(colors.red.500)_300%];
+    @apply before:[--tw-gradient-stops:theme(colors.cyan.500)_-200%,theme(colors.red.600)_300%];
 
     /* Dot Color */
-    @apply after:[--tw-gradient-stops:theme(colors.cyan.500)_-200%,theme(colors.red.500)_300%];
+    @apply after:[--tw-gradient-stops:theme(colors.cyan.500)_-200%,theme(colors.red.600)_300%];
   }
 
   .timeline-item:has(.timeline-card#card-2017) {
     /* Horizontal Line Color */
-    @apply before:[--tw-gradient-stops:theme(colors.purple.500)_-200%,theme(colors.green.500)_300%];
+    @apply before:[--tw-gradient-stops:theme(colors.purple.500)_-200%,theme(colors.green.600)_300%];
 
     /* Dot Color */
-    @apply after:[--tw-gradient-stops:theme(colors.purple.500)_-200%,theme(colors.green.500)_300%];
+    @apply after:[--tw-gradient-stops:theme(colors.purple.500)_-200%,theme(colors.green.600)_300%];
   }
 
   .timeline-item:has(.timeline-card#card-2020) {
@@ -104,12 +104,12 @@
 
   .timeline-card#card-2024 {
     /* Border Color */
-    @apply before:from-cyan-500 before:to-red-500;
+    @apply before:from-cyan-500 before:to-red-600;
   }
 
   .timeline-card#card-2017 {
     /* Border Color */
-    @apply before:from-purple-500 before:to-green-500;
+    @apply before:from-purple-500 before:to-green-600;
   }
 
   .timeline-card#card-2020 {
@@ -171,14 +171,15 @@
     @apply before:absolute before:-left-6 before:top-1/2 before:-translate-y-1/2 before:rounded-full;
     @apply before:h-1.5 before:w-1.5 before:rounded-full;
     @apply before:bg-general-40;
+    @apply before:outline before:outline-2;
   }
 
   .timeline-card#card-2024 .bullet-points li {
-    @apply before:bg-red-500;
+    @apply before:bg-red-600;
   }
 
   .timeline-card#card-2017 .bullet-points li {
-    @apply before:bg-green-500;
+    @apply before:bg-green-600;
   }
 
   .timeline-card#card-2020 .bullet-points li {
@@ -211,12 +212,12 @@
 
   .timeline-card#card-2024 .tag {
     /* Border Color */
-    @apply before:from-cyan-500 before:to-red-500;
+    @apply before:from-cyan-500 before:to-red-600;
   }
 
   .timeline-card#card-2017 .tag {
     /* Border Color */
-    @apply before:from-purple-500 before:to-green-500;
+    @apply before:from-purple-500 before:to-green-600;
   }
 
   .timeline-card#card-2020 .tag {
