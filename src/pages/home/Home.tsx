@@ -99,6 +99,28 @@ const educationTimelineData = [
     ],
     title: "Student",
     year: "2020"
+  },
+  {
+    bullets: [
+      "Mathematical fundamentals and advanced problem-solving techniques",
+      "Core engineering technology skills through hands-on workshop projects",
+      "Applied physics principles",
+      "Computer applications and technical software tools"
+    ],
+    description: "Technology Foundations",
+    duration: "1 year",
+    location: "Cambridge, ON",
+    organization: "Conestoga College",
+    tags: [
+      "Math",
+      "Engineering",
+      "Physics",
+      "Computer Applications",
+      "Technology",
+      "Communications"
+    ],
+    title: "Student",
+    year: "2018"
   }
 ];
 

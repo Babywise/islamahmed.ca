@@ -19,7 +19,7 @@
   }
 
   .timeline-container#timeline-education {
-    @apply after:[--tw-gradient-stops:theme(colors.green.500)_0%,theme(colors.pink.500)_100%];
+    @apply after:[--tw-gradient-stops:theme(colors.green.500)_0%,theme(colors.pink.500)_55%,theme(colors.yellow.500)_60%,theme(colors.blue.500)_100%];
   }
 
   /* Timeline Items */
@@ -87,6 +87,14 @@
     @apply after:[--tw-gradient-stops:theme(colors.green.500)_-200%,theme(colors.pink.500)_300%];
   }
 
+  .timeline-item:has(.timeline-card#card-2018) {
+    /* Horizontal Line Color */
+    @apply before:[--tw-gradient-stops:theme(colors.yellow.500)_-200%,theme(colors.blue.500)_300%];
+
+    /* Dot Color */
+    @apply after:[--tw-gradient-stops:theme(colors.yellow.500)_-200%,theme(colors.blue.500)_300%];
+  }
+
   /* Timeline Cards */
   .timeline-card {
     @apply relative rounded-lg p-4;
@@ -117,6 +125,11 @@
     @apply before:from-green-500 before:to-pink-500;
   }
 
+  .timeline-card#card-2018 {
+    /* Border Color */
+    @apply before:from-yellow-500 before:to-blue-500;
+  }
+
   /* Year Section */
   .year-section {
     @apply mb-3 flex items-center gap-2;
@@ -136,6 +149,10 @@
 
   .year#year-2020 {
     @apply text-green-500 drop-shadow-[0_0_7px_theme(colors.green.500)];
+  }
+
+  .year#year-2018 {
+    @apply text-yellow-500 drop-shadow-[0_0_7px_theme(colors.yellow.500)];
   }
 
   .duration {
@@ -186,6 +203,10 @@
     @apply before:bg-pink-500;
   }
 
+  .timeline-card#card-2018 .bullet-points li {
+    @apply before:bg-blue-500;
+  }
+
   /* Tags */
   .tags {
     @apply flex flex-wrap gap-2;
@@ -223,5 +244,10 @@
   .timeline-card#card-2020 .tag {
     /* Border Color */
     @apply before:from-green-500 before:to-pink-500;
+  }
+
+  .timeline-card#card-2018 .tag {
+    /* Border Color */
+    @apply before:from-yellow-500 before:to-blue-500;
   }
 }
