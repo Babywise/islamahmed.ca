@@ -38,4 +38,9 @@
     /* Typography */
     @apply text-2xl font-bold;
   }
+
+  .experience-content {
+    /* Layout */
+    @apply flex flex-col rounded-3xl bg-general-40/5;
+  }
 }

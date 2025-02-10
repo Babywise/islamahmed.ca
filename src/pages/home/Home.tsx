@@ -210,22 +210,24 @@ function Home() {
       </section>
       {/* <!-- Experience section --> */}
       <section id="experience">
-        <TabContainer
-          tabs={[
-            {
-              content: <Timeline id="work" items={workTimelineData} />,
-              id: "work",
-              label: "Work"
-            },
-            {
-              content: (
-                <Timeline id="education" items={educationTimelineData} />
-              ),
-              id: "education",
-              label: "Education"
-            }
-          ]}
-        />
+        <div className="experience-content" role="none">
+          <TabContainer
+            tabs={[
+              {
+                content: <Timeline id="work" items={workTimelineData} />,
+                id: "work",
+                label: "Work"
+              },
+              {
+                content: (
+                  <Timeline id="education" items={educationTimelineData} />
+                ),
+                id: "education",
+                label: "Education"
+              }
+            ]}
+          />
+        </div>
       </section>
     </>
   );

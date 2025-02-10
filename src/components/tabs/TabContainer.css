@@ -3,7 +3,7 @@
 
 @layer components {
   .tab-container {
-    @apply my-5 w-full;
+    @apply mt-5 w-full;
   }
 
   .tab-header {
@@ -31,6 +31,6 @@
   }
 
   .tab-content {
-    @apply py-5;
+    @apply pt-5;
   }
 }
