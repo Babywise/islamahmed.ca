@@ -121,6 +121,31 @@ const educationTimelineData = [
     ],
     title: "Student",
     year: "2018"
+  },
+  {
+    bullets: [
+      "Design principles and composition",
+      "Life drawing and perspective rendering",
+      "Applied 2D and 3D design concepts in practical projects",
+      "Historical design movements and their impact",
+      "Visual communication and presentation skills",
+      "Created innovative solutions through ideation processes"
+    ],
+    description: "Design Foundations",
+    duration: "1 year",
+    location: "Cambridge, ON",
+    organization: "Conestoga College",
+    tags: [
+      "Design",
+      "Drawing",
+      "Communication",
+      "Marketing",
+      "Art History",
+      "Visual Arts",
+      "History"
+    ],
+    title: "Student",
+    year: "2016"
   }
 ];
 
