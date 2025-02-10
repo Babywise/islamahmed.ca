@@ -19,7 +19,7 @@
   }
 
   .timeline-container#timeline-education {
-    @apply after:[--tw-gradient-stops:theme(colors.green.500)_0%,theme(colors.pink.500)_40%,theme(colors.yellow.500)_45%,theme(colors.blue.500)_65%,theme(colors.rose.500)_70%,theme(colors.teal.500)_100%];
+    @apply after:[--tw-gradient-stops:theme(colors.green.500)_0%,theme(colors.pink.500)_40%,theme(colors.yellow.500)_45%,theme(colors.blue.500)_65%,theme(colors.rose.500)_75%,theme(colors.teal.500)_100%];
   }
 
   /* Timeline Items */
