@@ -142,7 +142,8 @@ const educationTimelineData = [
       "Marketing",
       "Art History",
       "Visual Arts",
-      "History"
+      "History",
+      "Adobe"
     ],
     title: "Student",
     year: "2016"
