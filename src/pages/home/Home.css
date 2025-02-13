@@ -43,4 +43,9 @@
     /* Layout */
     @apply flex flex-col rounded-3xl bg-general-40/5;
   }
+
+  .divider {
+    /* Divider styles */
+    @apply my-2 h-2 w-full rounded-3xl bg-general-10/15;
+  }
 }

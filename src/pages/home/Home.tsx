@@ -209,6 +209,8 @@ function Home() {
       <section id="start">
         <div className="start-content" role="none" />
       </section>
+      {/* <!-- Divider --> */}
+      <div className="divider" />
       {/* <!-- Experience section --> */}
       <section id="experience">
         <div className="experience-content" role="none">
@@ -230,6 +232,8 @@ function Home() {
           />
         </div>
       </section>
+      {/* <!-- Divider --> */}
+      <div className="divider" />
     </>
   );
 }
