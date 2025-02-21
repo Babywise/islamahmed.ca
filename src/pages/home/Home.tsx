@@ -68,7 +68,6 @@ const educationTimelineData = [
       "Software quality assurance and testing",
       "User experience design and optimization"
     ],
-    description: "Bachelor of Computer Science",
     duration: "4 years",
     location: "Waterloo, ON",
     organization: "Conestoga College",
@@ -97,7 +96,7 @@ const educationTimelineData = [
       "Rootkits",
       "Privacy"
     ],
-    title: "Student",
+    title: "Bachelor of Computer Science",
     year: "2020"
   },
   {
@@ -107,7 +106,6 @@ const educationTimelineData = [
       "Applied physics principles",
       "Computer applications and technical software tools"
     ],
-    description: "Technology Foundations",
     duration: "1 year",
     location: "Cambridge, ON",
     organization: "Conestoga College",
@@ -119,7 +117,7 @@ const educationTimelineData = [
       "Technology",
       "Communications"
     ],
-    title: "Student",
+    title: "Technology Foundations",
     year: "2018"
   },
   {
@@ -131,7 +129,6 @@ const educationTimelineData = [
       "Visual communication and presentation skills",
       "Created innovative solutions through ideation processes"
     ],
-    description: "Design Foundations",
     duration: "1 year",
     location: "Cambridge, ON",
     organization: "Conestoga College",
@@ -145,7 +142,7 @@ const educationTimelineData = [
       "History",
       "Adobe"
     ],
-    title: "Student",
+    title: "Design Foundations",
     year: "2016"
   }
 ];
