@@ -1,6 +1,6 @@
 import "./Timeline.css";
 
-interface TimelineItem {
+export interface TimelineItem {
   bullets: string[];
   description?: string;
   duration: string;
