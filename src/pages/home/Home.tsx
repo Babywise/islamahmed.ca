@@ -5,9 +5,10 @@ import { FaBehance, FaGithub, FaLinkedin } from "react-icons/fa6";
 import type { SocialLink } from "../../components/social/SocialNav";
 import SocialNav from "../../components/social/SocialNav";
 import TabContainer from "../../components/tabs/TabContainer";
+import type { TimelineItem } from "../../components/timeline/Timeline";
 import Timeline from "../../components/timeline/Timeline";
 
-const workTimelineData = [
+const workTimelineData: TimelineItem[] = [
   {
     bullets: [
       "Designed and implemented an automated script to extract 3D assets from SharePoint using Python",
@@ -57,7 +58,7 @@ const workTimelineData = [
   }
 ];
 
-const educationTimelineData = [
+const educationTimelineData: TimelineItem[] = [
   {
     bullets: [
       "Advanced computing courses and algorithms",
