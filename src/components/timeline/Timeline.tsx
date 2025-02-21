@@ -2,7 +2,7 @@ import "./Timeline.css";
 
 interface TimelineItem {
   bullets: string[];
-  description: string;
+  description?: string;
   duration: string;
   location: string;
   organization: string;
